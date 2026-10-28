@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "institution": "Periyar Maniammai Institute of Science and Technology (PMIST), Thanjavur, Tamil Nadu",
+    "verified": false,
+    "note": "DEVELOPMENT PLACEHOLDER DATA. This list is based on publicly known PMIST program offerings but has NOT been verified against the official 2024-25 admission brochure. It must be replaced with the official PMIST course list before any real use. Never present these entries as guaranteed current PMIST offerings.",
+    "lastUpdated": "2025-01-01"
+  },
+  "courses": [
+    {
+      "code": "BT-CSE",
+      "name": "B.Tech Computer Science and Engineering",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Covers programming, data structures, algorithms, databases, operating systems, networks and software engineering, with modern electives in AI and web technologies.",
+      "interests": ["computer science", "programming", "coding", "software", "computers", "algorithms", "web development", "app development", "technology", "artificial intelligence", "game development", "problem solving", "maths", "mathematics"],
+      "skills": ["Programming (C, Java, Python)", "Data structures & algorithms", "Web and mobile app development", "Database design", "Software engineering", "Teamwork on projects"],
+      "careers": ["Software Engineer", "Web / App Developer", "Systems Analyst", "QA Engineer", "Higher studies (M.Tech / MCA)"]
+    },
+    {
+      "code": "BT-AIDS",
+      "name": "B.Tech Artificial Intelligence and Data Science",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Focuses on machine learning, data analytics, deep learning, statistics and intelligent system design for building AI-powered applications.",
+      "interests": ["artificial intelligence", "ai", "machine learning", "data science", "data analytics", "statistics", "robots", "robotics", "maths", "mathematics", "programming", "computers", "technology", "chatbots", "big data"],
+      "skills": ["Python programming", "Machine learning fundamentals", "Data analysis & visualisation", "Statistics for AI", "Deep learning basics", "AI project building"],
+      "careers": ["AI / ML Engineer (entry paths)", "Data Analyst", "Business Intelligence roles", "Research assistance", "Higher studies"]
+    },
+    {
+      "code": "BT-ECE",
+      "name": "B.Tech Electronics and Communication Engineering",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Electronics, embedded systems, signal processing, communication systems and IoT hardware development.",
+      "interests": ["electronics", "circuits", "embedded systems", "iot", "hardware", "communication", "signals", "gadgets", "robotics", "drones", "physics", "technology"],
+      "skills": ["Circuit design", "Embedded programming", "Signal processing basics", "IoT prototyping", "PCB and hardware labs"],
+      "careers": ["Electronics Engineer", "Embedded Developer", "IoT Engineer", "Telecom roles", "Higher studies"]
+    },
+    {
+      "code": "BT-EEE",
+      "name": "B.Tech Electrical and Electronics Engineering",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Electrical machines, power systems, power electronics and control systems with hands-on electrical labs.",
+      "interests": ["electricity", "electrical", "power", "machines", "circuits", "energy", "solar", "renewable energy", "physics", "engineering"],
+      "skills": ["Electrical machine labs", "Power system analysis", "Control systems", "Wiring and safety practice"],
+      "careers": ["Electrical Engineer", "Power sector roles", "Energy consultant paths", "Government engineering services (via exams)", "Higher studies"]
+    },
+    {
+      "code": "BT-MECH",
+      "name": "B.Tech Mechanical Engineering",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Design and manufacturing of machines: thermodynamics, mechanics of materials, CAD/CAM, robotics and manufacturing technology.",
+      "interests": ["machines", "cars", "automobiles", "mechanics", "designing machines", "manufacturing", "robots", "robotics", "3d printing", "thermal", "physics", "engineering", "drawing"],
+      "skills": ["CAD modelling", "Manufacturing processes", "Thermal & fluid sciences", "Machine design projects"],
+      "careers": ["Mechanical Engineer", "Design Engineer", "Manufacturing roles", "Automotive industry paths", "Higher studies"]
+    },
+    {
+      "code": "BT-CIVIL",
+      "name": "B.Tech Civil Engineering",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Planning, design and construction of buildings, bridges, water supply and infrastructure with site-visit based learning.",
+      "interests": ["buildings", "construction", "bridges", "infrastructure", "structures", "surveying", "architecture", "environment", "maths", "physics", "engineering"],
+      "skills": ["Structural analysis basics", "Surveying practice", "Construction materials labs", "Site planning"],
+      "careers": ["Civil Engineer", "Site Engineer", "Structural design assistant", "Government works departments (via exams)", "Higher studies"]
+    },
+    {
+      "code": "BT-BIOTECH",
+      "name": "B.Tech Biotechnology",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Applies biology to technology: cell biology, genetics, bio-process engineering, medical and agricultural biotechnology labs.",
+      "interests": ["biology", "biotechnology", "genetics", "dna", "medical research", "medicine", "laboratory", "labs", "science experiments", "environment", "agriculture science", "chemistry", "research"],
+      "skills": ["Laboratory techniques", "Cell & molecular biology", "Bio-process fundamentals", "Scientific reporting"],
+      "careers": ["Biotech industry roles", "Lab analyst paths", "Research assistant", "Higher studies (M.Tech / M.Sc)"]
+    },
+    {
+      "code": "BT-AGRI",
+      "name": "B.Tech Agricultural Engineering",
+      "level": "UG",
+      "stream": "Agricultural Engineering",
+      "duration": "4 years",
+      "description": "Farm machinery, soil and water conservation, irrigation, post-harvest technology and precision agriculture.",
+      "interests": ["agriculture", "farming", "farm machines", "soil", "irrigation", "environment", "nature", "food processing", "village development", "tractors", "biology"],
+      "skills": ["Farm machinery practice", "Soil & water engineering", "Irrigation design basics", "Field visits"],
+      "careers": ["Agricultural engineer roles", "Agri-equipment industry", "Water resource roles", "Agri-entrepreneurship", "Higher studies"]
+    },
+    {
+      "code": "BARCH",
+      "name": "B.Arch (Bachelor of Architecture)",
+      "level": "UG",
+      "stream": "Architecture & Planning",
+      "duration": "5 years",
+      "description": "Architectural design studios, building construction, history of architecture, CAD and sustainable design; includes practical training.",
+      "interests": ["drawing", "sketching", "designing", "buildings", "architecture", "interior design", "art", "creativity", "creations", "models", "planning spaces", "painting", "design"],
+      "skills": ["Design studio practice", "Architectural drawing & CAD", "Model making", "Sustainable design thinking"],
+      "careers": ["Architect (after registration)", "Design studios", "Urban planning assistance", "Freelance design", "Higher studies"]
+    },
+    {
+      "code": "BCA",
+      "name": "BCA (Bachelor of Computer Applications)",
+      "level": "UG",
+      "stream": "Computer Applications",
+      "duration": "3 years",
+      "description": "Application-oriented computing: programming, web technologies, databases and software tools for IT careers.",
+      "interests": ["computers", "programming", "coding", "software", "web development", "apps", "technology", "computer applications", "it jobs"],
+      "skills": ["Programming basics", "Web technologies", "Database handling", "Software tools practice"],
+      "careers": ["IT support & developer roles", "Web developer", "MCA / higher studies"]
+    },
+    {
+      "code": "BSC-PSY",
+      "name": "B.Sc Psychology",
+      "level": "UG",
+      "stream": "Science & Humanities",
+      "duration": "3 years",
+      "description": "Understanding human behaviour and mind: cognitive, social, developmental and organisational psychology with practical exposure.",
+      "interests": ["psychology", "human mind", "behaviour", "counselling", "helping people", "understanding people", "social work", "emotions", "mental health", "talking to people"],
+      "skills": ["Psychological testing basics", "Communication & empathy", "Research methods", "Case study analysis"],
+      "careers": ["Counselling pathways (with PG)", "HR assistant roles", "Community work", "Higher studies (M.Sc Psychology)"]
+    },
+    {
+      "code": "BBA",
+      "name": "BBA (Bachelor of Business Administration)",
+      "level": "UG",
+      "stream": "Management",
+      "duration": "3 years",
+      "description": "Business fundamentals: management, marketing, finance, human resources and entrepreneurship with case-based learning.",
+      "interests": ["business", "management", "startups", "entrepreneurship", "marketing", "sales", "money", "finance", "leading teams", "leadership", "economy", "talking to people", "organising events"],
+      "skills": ["Management fundamentals", "Marketing & finance basics", "Communication", "Business plan building"],
+      "careers": ["Management trainee", "Marketing / HR assistant roles", "Family business support", "MBA path"]
+    },
+    {
+      "code": "BCOM",
+      "name": "B.Com (Bachelor of Commerce)",
+      "level": "UG",
+      "stream": "Commerce",
+      "duration": "3 years",
+      "description": "Accounting, taxation, banking, auditing and commercial law with professional-exam aligned foundations.",
+      "interests": ["accounts", "accounting", "commerce", "taxation", "banking", "business", "finance", "numbers", "maths", "economy", "audit"],
+      "skills": ["Financial accounting", "Taxation basics", "Business law awareness", "Spreadsheet practice"],
+      "careers": ["Accountant paths", "Banking sector exams", "CA / CMA preparation", "M.Com / MBA"]
+    },
+    {
+      "code": "MT-CSE",
+      "name": "M.Tech Computer Science and Engineering",
+      "level": "PG",
+      "stream": "Engineering & Technology",
+      "duration": "2 years",
+      "description": "Advanced computing: advanced algorithms, research methodology and specialisation electives with thesis work.",
+      "interests": ["computer science", "research", "advanced programming", "artificial intelligence", "teaching", "higher studies", "mtech"],
+      "skills": ["Advanced algorithms", "Research methodology", "Specialised electives", "Thesis writing"],
+      "careers": ["Advanced engineering roles", "Teaching paths", "Research careers", "Doctoral studies"]
+    },
+    {
+      "code": "MBA",
+      "name": "MBA (Master of Business Administration)",
+      "level": "PG",
+      "stream": "Management",
+      "duration": "2 years",
+      "description": "Postgraduate management education across marketing, finance, HR and operations with industry projects.",
+      "interests": ["business", "management", "leadership", "marketing", "finance", "startups", "career growth", "mba"],
+      "skills": ["Strategic thinking", "Business analytics basics", "Leadership & communication", "Industry projects"],
+      "careers": ["Managerial roles", "Business analysis", "Entrepreneurship", "Corporate careers"]
+    },
+    {
+      "code": "MCA",
+      "name": "MCA (Master of Computer Applications)",
+      "level": "PG",
+      "stream": "Computer Applications",
+      "duration": "2 years",
+      "description": "Advanced application development: software engineering, cloud and modern frameworks for IT careers.",
+      "interests": ["computers", "programming", "software", "apps", "web development", "it career", "mca", "higher studies"],
+      "skills": ["Advanced programming", "Full-stack basics", "Cloud fundamentals", "Project development"],
+      "careers": ["Software developer", "IT consultant paths", "System roles"]
+    }
+  ]
+}

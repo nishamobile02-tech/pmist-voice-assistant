@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Authoritative PMIST course catalogue.
+// Every recommendation MUST be validated against this table in backend code.
+model Course {
+  id            String   @id @default(cuid())
+  code          String   @unique // e.g. "BT-CSE"
+  name          String // official course name
+  level         String // "UG" | "PG"
+  stream        String // Engineering / Architecture / Science / Management ...
+  duration      String
+  description   String
+  interests     String   @default("[]") // JSON array of interest tags
+  skills        String   @default("[]") // JSON array
+  careers       String   @default("[]") // JSON array
+  isPlaceholder Boolean  @default(true) // true until official PMIST list is verified
+  createdAt     DateTime @default(now())
+}
+
+// Chat transcript per browser session (privacy: cleared on restart)
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String // "user" | "assistant"
+  content   String
+  language  String?
+  createdAt DateTime @default(now())
+
+  @@index([sessionId, createdAt])
+}
+
+// Lightweight extracted profile used by the conversation stage machine
+model StudentProfile {
+  id                   String   @id @default(cuid())
+  sessionId            String   @unique
+  name                 String?
+  language             String   @default("en")
+  interests            String   @default("[]") // JSON array
+  careerGoal           String?
+  stage                String   @default("welcome")
+  turnCount            Int      @default(0)
+  lastRecommendedCodes String   @default("[]") // JSON array
+  updatedAt            DateTime @updatedAt
+  createdAt            DateTime @default(now())
+}

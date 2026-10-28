@@ -1,0 +1,1783 @@
+# PROJECT: PMIST VOICE AI ADMISSION ASSISTANT
+## Complete Development Specification for an Offline, Multilingual AI Application
+
+### 1. YOUR ROLE
+
+Act as a senior full-stack developer, local AI engineer, speech-processing engineer, and UI/UX designer.
+
+Build a complete, functional, offline AI-powered voice assistant for the admission department of **Periyar Maniammai Institute of Science and Technology (PMIST), Thanjavur, Tamil Nadu, India**.
+
+The application should interact naturally with prospective students, understand their interests and favourite subjects, recommend suitable courses from the supplied PMIST course document, and generate personalized educational and career roadmaps.
+
+This is a real software development project intended for a college submission with a very short deadline.
+
+**Do not deliver only a UI mockup, a static website, or a basic text-only chatbot. Build an integrated application with a working backend, local AI, voice input, voice output, verified course recommendations, and personalized roadmaps.**
+
+Prioritize a reliable, demonstrable end-to-end prototype over unnecessary features.
+
+---
+
+# 2. MOST IMPORTANT REQUIREMENT: USE ONLY THE SUPPLIED PMIST COURSE DOCUMENT
+
+The developer has supplied the following reference document:
+
+`PMIST_Open_House_Course_Career_Chatbot.docx`
+
+This document must be the **exclusive source of institutional course information** used by the application.
+
+It contains:
+
+- PMIST course names and specializations.
+- Broad subject-to-course matching guidance.
+- Descriptions of student interests associated with courses.
+- Suggested foundational skills.
+- Suggested learning roadmaps.
+- Possible career and further-study directions.
+- Important warnings about course availability and verification.
+
+Read and extract the document before implementing the course recommendation system.
+
+Do not replace the supplied information with a different course list obtained from the internet, a language model, or general knowledge.
+
+## 2.1 Course information restrictions
+
+The assistant must follow these rules in every conversation.
+
+**Rule 1: Recommend only document-listed courses.**
+
+Every recommended course must match a course record extracted from the supplied document and stored in the application's local course database.
+
+**Rule 2: Never invent a PMIST course.**
+
+The AI must not create new course names, specializations, combinations, degree programmes, or alternative course titles.
+
+For example, if a student expresses interest in game development, the assistant may consider a relevant listed course such as B.Tech. CSE with specialization in AR & VR, if supported by the document. However, it must never claim that PMIST offers a dedicated game development degree unless that exact course is included in the approved database.
+
+**Rule 3: Preserve official course names.**
+
+Use the exact course names recorded in the source document.
+
+You may explain a course in simpler language, but you must not modify its official name.
+
+**Rule 4: Use only supplied course details.**
+
+Course descriptions, associated interests, skills, learning roadmaps, and career directions must be grounded in the supplied document.
+
+You may personalize the order, wording, and emphasis of those details according to a student's interests.
+
+You must not introduce unsupported institutional facts.
+
+**Rule 5: Do not invent eligibility information.**
+
+Never tell a student that they qualify for a course unless verified eligibility requirements and the student's relevant academic information are available in an explicitly approved source.
+
+The supplied course document alone must not be treated as proof of eligibility.
+
+**Rule 6: Do not invent official curriculum details.**
+
+If the document does not provide a verified semester-wise syllabus, do not generate one.
+
+You may provide a general skills roadmap based on the supplied document, but label it clearly as suggested guidance rather than the official PMIST curriculum.
+
+**Rule 7: Do not invent admission or placement facts.**
+
+Do not fabricate:
+
+- Admission cutoffs.
+- Fees or scholarships.
+- Placement percentages.
+- Average or highest salary packages.
+- Admission deadlines.
+- Accreditation status.
+- Course duration.
+- Eligibility criteria.
+- Seat availability.
+- Semester-wise subjects.
+- Current admission status.
+- Institutional facilities.
+- Internship guarantees.
+
+If information is missing, explain that the assistant does not have verified information about it and recommend contacting the PMIST admission department.
+
+**Rule 8: Never silently substitute external information.**
+
+Do not use internet searches, external APIs, or the language model's internal knowledge to supplement the course database.
+
+Do not automatically download a newer course list.
+
+Do not silently update institutional information.
+
+Any future source changes must be made explicitly by the developer.
+
+## 2.2 Distinguish listed courses from currently verified offerings
+
+The supplied document identifies itself as a working inventory and warns that availability, nomenclature, specializations, duration, eligibility, and admission year may change.
+
+Therefore, the application must not claim that every listed course is currently open for admission.
+
+Implement a course-status field, such as:
+
+- `listed_unverified`: Present in the supplied document but not independently confirmed as currently available.
+- `verified_current`: Explicitly verified by the developer against an approved current official source.
+- `inactive`: Explicitly marked inactive by the developer.
+
+Initially, imported courses must not automatically become `verified_current`.
+
+For the first prototype, the assistant may recommend relevant courses from the supplied inventory while clearly stating that current availability must be confirmed with the admission department.
+
+The application must not claim that an unverified course is currently accepting applications.
+
+If no current verification has been supplied, explain the limitation rather than inventing confirmation.
+
+## 2.3 Create the course database from the supplied document
+
+Create:
+
+`server/data/courses.json`
+
+Extract all identifiable course records and the associated information from the supplied document.
+
+The document includes programmes across Architecture and Planning, Engineering and Technology, Computing Sciences and Applications, Arts and Science, Commerce, Management Studies, Humanities, Languages and Media, and Education.
+
+Preserve the course names, specializations, associated interests, roadmap guidance, and possible career directions found in the document.
+
+Do not omit relevant course records simply because a language model considers other courses more popular.
+
+Use a structured JSON schema similar to:
+
+{
+  "source": "PMIST_Open_House_Course_Career_Chatbot.docx",
+  "source_status": "working_inventory_not_fully_currently_verified",
+  "courses": [
+    {
+      "id": "btech_cse",
+      "official_name": "Computer Science and Engineering (CSE)",
+      "degree_level": "Undergraduate",
+      "category": "Engineering & Technology",
+      "specialization": null,
+      "availability_status": "listed_unverified",
+      "interests": [
+        "computer science",
+        "programming",
+        "logical thinking",
+        "problem solving"
+      ],
+      "foundational_skills": [
+        "programming",
+        "computational thinking",
+        "basic mathematics"
+      ],
+      "roadmap": [
+        "Learn one programming language and computational thinking.",
+        "Develop programming, data structures, algorithms, and database skills.",
+        "Build a useful application or website.",
+        "Complete team projects and coding practice."
+      ],
+      "career_directions": [
+        "Software development",
+        "Quality assurance and testing",
+        "Web or mobile development",
+        "Systems-related roles"
+      ],
+      "source_document": "PMIST_Open_House_Course_Career_Chatbot.docx"
+    }
+  ]
+}
+
+This is a schema example, not permission to invent or alter course information.
+
+Extract the actual values from the supplied document. Where the source does not provide a field, use `null`, an empty array, or another explicit missing-value representation.
+
+Use accurate degree-level classifications based on the document's programme groupings. Do not infer additional institutional details.
+
+If the document's wording is ambiguous, preserve the source wording and flag the ambiguity for developer review.
+
+Create a repeatable extraction or import script if practical, but ensure that the resulting JSON is readable, valid, and easy to edit manually.
+
+The JSON database must be the only source used by the backend for course recommendations.
+
+---
+
+# 3. PROJECT OBJECTIVE
+
+Build a friendly, multilingual admission assistant that completes the following workflow:
+
+1. Greet the student.
+2. Ask for the student's name.
+3. Identify the language used by the student.
+4. Build a natural conversation.
+5. Ask about favourite subjects and interests.
+6. Ask relevant follow-up questions only when needed.
+7. Identify the student's academic interests and possible career goals.
+8. Retrieve suitable courses from the local PMIST course database.
+9. Match student interests against the retrieved courses using backend logic.
+10. Validate all recommended courses against the approved database.
+11. Explain why each course may suit the student's interests.
+12. Generate a personalized educational and career roadmap.
+13. Display recommendations and the roadmap in the React interface.
+14. Read the assistant's responses aloud using local text-to-speech.
+15. Allow the student to continue asking questions through voice or text.
+16. Work offline after the required software, dependencies, and models have been installed.
+
+The assistant should feel like a helpful admission counsellor, not a form that mechanically asks a fixed set of questions.
+
+---
+
+# 4. TECHNOLOGY STACK
+
+Use the following stack unless a demonstrated compatibility issue requires a practical adjustment.
+
+## Frontend
+
+- React.js.
+- Vite.
+- JavaScript.
+- HTML5.
+- CSS3.
+- Web Audio APIs where appropriate.
+- Fetch API for backend communication.
+
+## Backend
+
+- Node.js.
+- Express.js.
+- REST APIs.
+- Local JSON data storage for courses.
+- Explicit backend course-matching and validation logic.
+
+## Local language model
+
+Use Ollama to run a locally hosted language model.
+
+Evaluate a suitable multilingual model that supports English and Tamil and can handle conversational responses.
+
+Choose a quantized model appropriate for the available hardware.
+
+Do not assume that a model supports high-quality Tamil or Tanglish merely because it is multilingual.
+
+Test actual conversation quality before selecting the final model.
+
+## Local speech recognition
+
+Prefer Whisper.cpp or another suitable locally executable speech recognition engine.
+
+The speech recognition engine must process microphone audio locally.
+
+Evaluate:
+
+- English speech recognition.
+- Tamil speech recognition.
+- Tamil-English code-switching.
+- Tanglish spoken with Tamil pronunciation.
+- Recognition speed.
+- Memory consumption.
+- GPU compatibility where relevant.
+
+Do not use cloud speech recognition APIs.
+
+## Local text-to-speech
+
+Evaluate Piper TTS or another practical local text-to-speech engine.
+
+Verify the availability and quality of suitable English and Tamil voices.
+
+If a natural Tamil voice is unavailable in the chosen engine, document the limitation and use the best practical local alternative.
+
+Do not claim native-quality Tamil speech without testing.
+
+## Course data
+
+Use `server/data/courses.json`.
+
+MongoDB is optional and must not delay the prototype.
+
+Do not introduce unnecessary databases or frameworks.
+
+---
+
+# 5. HARDWARE REQUIREMENTS
+
+The application should run independently on either of these computers.
+
+### Computer A
+
+- Lenovo LOQ laptop.
+- NVIDIA RTX 4050 with 6 GB VRAM.
+- 16 GB RAM.
+
+### Computer B
+
+- Intel Core i7, 14th generation.
+- NVIDIA RTX 4060 GPU.
+
+Select a model that can operate within the available memory.
+
+Before finalizing the model:
+
+1. Check whether Ollama is installed.
+2. Check the available system memory.
+3. Check GPU availability.
+4. Check the installed NVIDIA driver and CUDA-related compatibility where applicable.
+5. Select a practical quantized model.
+6. Test response speed.
+7. Check whether other local processes can run alongside the model.
+
+Do not assume that Ollama will use the GPU simply because a GPU is installed.
+
+Use model settings and context limits appropriate for a short admission conversation.
+
+Avoid unnecessary simultaneous model instances.
+
+The application must not require both computers to communicate with each other. Each computer must support its own local installation.
+
+---
+
+# 6. OFFLINE-FIRST REQUIREMENT
+
+Offline operation is mandatory.
+
+After initial installation and downloading the required models and dependencies, the application must work without internet access.
+
+During normal operation, do not use:
+
+- OpenAI APIs.
+- Gemini APIs.
+- Claude APIs.
+- Cloud-hosted language models.
+- Cloud speech recognition.
+- Remote text-to-speech services.
+- Remote embedding APIs.
+- Internet-based course searches.
+- External services that receive student conversation data.
+
+Do not silently fall back to online services when local AI fails.
+
+If Ollama, Whisper, or TTS fails, display a clear error and allow the student to retry or use text input.
+
+Use locally hosted assets and locally installed dependencies.
+
+Avoid remote fonts, remote images, external scripts, CDN-based UI frameworks, and other runtime dependencies that would break offline operation.
+
+Document which installation steps require an internet connection and which steps work offline.
+
+Provide a practical method to verify offline operation, such as disconnecting the internet after setup and testing the application locally.
+
+---
+
+# 7. CONVERSATION DESIGN
+
+Implement a conversation manager that maintains the student's temporary session context.
+
+The assistant must ask relevant questions naturally and avoid repeating information already provided.
+
+## Stage 1: Welcome
+
+Example:
+
+Assistant:
+
+"Hi! Welcome to PMIST! 😊 What's your name?"
+
+Student:
+
+"My name is Arjun."
+
+Assistant:
+
+"Nice to meet you, Arjun! How are you today?"
+
+The assistant should be warm, respectful, professional, and suitable for prospective college students.
+
+Do not use excessive emojis or overly casual language.
+
+## Stage 2: Discover interests
+
+Ask short questions, such as:
+
+- Which subjects do you enjoy studying?
+- What is your favourite subject?
+- Do you enjoy solving mathematical problems?
+- Are you interested in programming, designing, business, science, or engineering?
+- What activities do you enjoy?
+- What would you like to do in your future career?
+
+Do not ask all these questions mechanically.
+
+Ask follow-up questions based on what the student has already said.
+
+For example:
+
+Student:
+
+"I like computer science."
+
+Assistant:
+
+"That's great! Do you enjoy coding, analysing data, creating digital experiences, or understanding how computer systems work?"
+
+This is an illustrative interaction, not a statement about course availability.
+
+## Stage 3: Understand the student's intent
+
+Use the local AI model to extract structured information from the conversation.
+
+Maintain fields such as:
+
+{
+  "student_name": null,
+  "preferred_language": "English",
+  "favourite_subjects": [],
+  "interests": [],
+  "preferred_activities": [],
+  "career_interests": [],
+  "academic_background": null,
+  "clarification_needed": false,
+  "conversation_stage": "discover_interests"
+}
+
+Use `null` or empty arrays when information is unknown.
+
+Do not fabricate missing details.
+
+Do not assume that liking a subject means the student qualifies for a particular programme.
+
+Do not repeatedly ask for the student's name, favourite subject, or career interest after the student has already provided that information.
+
+If the student's interests are unclear, ask one short clarification question.
+
+## Stage 4: Recommend courses
+
+Once sufficient information has been collected:
+
+1. Extract the student's interests.
+2. Send the structured interests to the backend course matcher.
+3. Retrieve candidate courses from `courses.json`.
+4. Score candidates using explicit backend logic.
+5. Exclude courses that do not match an approved database record.
+6. Apply availability-status rules.
+7. Return a small number of suitable recommendations.
+8. Generate an explanation using the retrieved course records.
+9. Validate the final response before displaying it.
+
+The assistant should normally present two or three relevant options when sufficient matches exist.
+
+If only one suitable course is identified, present one.
+
+Do not manufacture additional recommendations to reach a target number.
+
+If no suitable match is found, explain that the assistant could not identify a suitable course from the available records.
+
+Offer to show the supplied course inventory or suggest contacting the admission department.
+
+## Stage 5: Explain the recommendations
+
+For each course, explain:
+
+- Official course name.
+- Degree level, where supported by the source.
+- Relevant student interests.
+- Why the course may suit those interests.
+- Relevant foundational skills.
+- Suggested learning roadmap.
+- Possible career directions from the supplied document.
+- Any important uncertainty about current availability.
+
+Keep explanations understandable to a student who has little knowledge of college programmes.
+
+Use simple English or the student's preferred language.
+
+Do not claim that a course guarantees a particular career or salary.
+
+Do not make definitive statements about which course is best for the student.
+
+Use language such as:
+
+"Based on the interests you shared, this course may be worth exploring."
+
+"This is a suggestion, not a final decision about your future."
+
+"Please confirm the current availability and admission requirements with PMIST."
+
+---
+
+# 8. BACKEND COURSE RECOMMENDATION ENGINE
+
+This component is the most important protection against fabricated course information.
+
+Do not depend on the language model's system prompt alone.
+
+Implement a deterministic course matcher.
+
+Suggested file:
+
+`server/services/courseMatcher.js`
+
+## 8.1 Interest extraction
+
+Use the local language model to extract relevant information from the student's conversation.
+
+For example:
+
+Student input:
+
+"I like maths, programming and building small applications."
+
+Possible extracted interests:
+
+- Mathematics.
+- Programming.
+- Software development.
+- Problem solving.
+
+The extraction model may identify synonyms, but it must not generate course names.
+
+Validate the extracted data structure before using it.
+
+If the model returns malformed JSON, retry safely or use a basic rule-based fallback.
+
+## 8.2 Deterministic matching
+
+Use a combination of:
+
+- Keyword matching.
+- Synonym mapping.
+- Subject-to-course mappings from the supplied document.
+- Interest tags derived from the document.
+- A simple transparent relevance score.
+
+Example:
+
+A student expresses interest in biology, computing, and analysing biological data.
+
+The backend may identify a relevant course if the supplied document associates those interests with a listed programme.
+
+Do not use unrelated external course knowledge to improve the match.
+
+## 8.3 Ranking
+
+Assign relevance scores using a transparent algorithm.
+
+For example:
+
+- Direct match with a favourite subject: 3 points.
+- Match with a stated personal interest: 3 points.
+- Match with a preferred activity: 2 points.
+- Match with a stated career interest: 2 points.
+
+These weights are implementation choices, not institutional facts.
+
+Normalize or cap scores as appropriate.
+
+Return the most relevant database-listed records.
+
+Do not allow the language model to assign arbitrary scores to courses that the backend has not retrieved.
+
+## 8.4 Strict course validation
+
+Before a recommendation reaches the frontend:
+
+1. Confirm that the course ID exists in `courses.json`.
+2. Confirm that the official course name matches the stored record.
+3. Confirm that all displayed course-specific details originate from that record.
+4. Confirm that the course is not marked inactive.
+5. Check its availability status.
+6. Remove any unapproved course from the response.
+7. Reject the response if validation fails.
+
+Use stable course IDs internally.
+
+Never trust course names returned by the language model without validating them against the database.
+
+The frontend must display courses returned by the backend, not courses independently invented by the AI.
+
+**Critical acceptance test:** If the language model generates a nonexistent course name, the backend must prevent that name from appearing as a PMIST recommendation.
+
+## 8.5 No-match behavior
+
+If no relevant course is found, return a structured response such as:
+
+{
+  "status": "no_match",
+  "message": "I could not identify a suitable course from the available PMIST course records.",
+  "recommendations": [],
+  "next_action": "show_available_courses_or_contact_admissions"
+}
+
+The exact message can be localized.
+
+Never invent a new course to avoid an empty result.
+
+---
+
+# 9. PERSONALIZED ROADMAP GENERATION
+
+Create:
+
+`server/services/roadmapService.js`
+
+The roadmap must be personalized using the student's interests and the selected database-listed course.
+
+It may contain:
+
+1. Recommended course.
+2. Relevant foundational skills.
+3. Suggested skills to develop during the degree.
+4. Suggested projects.
+5. Suggested practical learning or internship preparation.
+6. Possible career directions.
+7. Suggested next steps for admission enquiries.
+
+## 9.1 Separate source information from generated guidance
+
+Use two clearly distinguished categories.
+
+### A. Information from the supplied PMIST document
+
+This may include:
+
+- Course name.
+- Interests associated with the course.
+- Foundational skills.
+- Roadmap steps.
+- Possible career directions.
+
+Preserve the source's meaning.
+
+### B. General personalized learning suggestions
+
+The assistant may propose simple learning activities and projects tailored to the student's interests, provided they are clearly labelled as suggestions rather than official PMIST curriculum.
+
+For example, a student interested in software development may receive a suggested beginner programming project if it is relevant to the supplied course guidance.
+
+Do not claim that such a project is required by PMIST.
+
+Do not invent semester-wise subjects, course duration, academic credits, placements, internships offered by the institution, or admission eligibility.
+
+## 9.2 Roadmap structure
+
+Return structured JSON such as:
+
+{
+  "course_id": "btech_cse",
+  "official_course_name": "Computer Science and Engineering (CSE)",
+  "personalization_summary": "The student expressed interest in programming and problem solving.",
+  "foundational_skills": [],
+  "suggested_learning_steps": [],
+  "suggested_projects": [],
+  "possible_career_directions": [],
+  "admission_next_steps": [],
+  "source_notes": {
+    "course_information_source": "PMIST_Open_House_Course_Career_Chatbot.docx",
+    "roadmap_is_official_syllabus": false
+  }
+}
+
+This is a schema example. Populate it from the actual approved course record and the student's conversation.
+
+Do not generate a roadmap for a course that is absent from the database.
+
+Do not invent a course ID.
+
+---
+
+# 10. LOCAL AI INTEGRATION
+
+Create:
+
+`server/services/llmService.js`
+
+Use Ollama's locally hosted API.
+
+The backend must communicate with the local Ollama service, not a cloud-hosted model.
+
+Choose the model based on actual tests of:
+
+- English conversational ability.
+- Tamil conversational ability.
+- Tanglish understanding.
+- Response speed.
+- Memory usage.
+- Structured information extraction.
+- Compatibility with the available hardware.
+
+Before finalizing the model, test at least these cases:
+
+1. English conversation.
+2. Tamil conversation.
+3. Tanglish conversation.
+4. English and Tamil mixed in one sentence.
+5. Structured interest extraction.
+6. Handling an unclear question.
+7. Responding when no suitable course is found.
+8. Following the course database restrictions.
+
+The local AI should handle:
+
+- Natural conversation.
+- Follow-up question generation.
+- Interest extraction.
+- Explanation of retrieved course information.
+- Personalized wording.
+- Localization of supported responses.
+
+The AI must not control the authoritative course database.
+
+## 10.1 System prompt restrictions
+
+Use a strict system prompt similar to the following:
+
+"You are the PMIST Voice AI Admission Assistant. You help prospective students understand their interests and explore potentially suitable courses.
+
+You must use only the course records and course details explicitly supplied to you by the backend from the approved local course database.
+
+Never invent a course, course name, specialization, institutional fact, admission requirement, fee, placement statistic, curriculum detail, or course availability status.
+
+You must not recommend any course unless the backend has retrieved and authorized that exact course record.
+
+If the backend provides no suitable course, explain that no suitable match could be identified from the available records.
+
+Use only the course-specific interests, skills, roadmaps, and career directions supplied by the backend.
+
+You may create personalized explanations and general learning suggestions, but clearly distinguish suggested guidance from official PMIST information.
+
+Do not claim that a listed but unverified course is currently available for admission.
+
+Do not claim that a student is eligible for a course without verified eligibility information.
+
+Use the student's preferred language when supported. Be friendly, respectful, concise, and professional.
+
+If information is missing or uncertain, say so rather than guessing."
+
+The backend must still enforce the restrictions independently.
+
+---
+
+# 11. SPEECH RECOGNITION
+
+Create:
+
+`server/services/speechRecognition.js`
+
+Use a local speech recognition engine.
+
+Preferred approach: Whisper.cpp, subject to successful installation and testing.
+
+The engine must accept microphone audio and return recognized text.
+
+## Requirements
+
+- Process audio locally.
+- Support English and Tamil where supported by the selected model.
+- Test Tanglish and code-switched speech separately.
+- Handle unsupported audio formats.
+- Validate file size and request parameters.
+- Provide meaningful errors.
+- Avoid saving audio permanently.
+- Remove temporary audio files after processing.
+- Do not transmit recordings externally.
+
+The recognition endpoint should return a response such as:
+
+{
+  "success": true,
+  "text": "I like computer science and programming.",
+  "language": "en"
+}
+
+The language field should be based on actual detection or configured recognition information. Use `unknown` when the language cannot be determined reliably.
+
+Do not pretend that every engine can accurately recognize Tamil and Tanglish.
+
+If speech recognition fails, ask the student to repeat their question or use text input.
+
+## Frontend recording
+
+Use a visible microphone button.
+
+Provide clear states:
+
+- Idle.
+- Recording.
+- Processing.
+- Speaking.
+- Error.
+
+Do not record continuously without the student's knowledge.
+
+Stop recording before processing the audio.
+
+Do not begin speaking while the student is recording.
+
+---
+
+# 12. LOCAL TEXT-TO-SPEECH
+
+Create:
+
+`server/services/textToSpeech.js`
+
+Evaluate Piper TTS or another suitable local engine.
+
+The application must convert the assistant's response into audio locally.
+
+Support English and Tamil as far as the installed voices permit.
+
+Tanglish speech must be tested rather than assumed to work.
+
+## Requirements
+
+- Local voice generation.
+- No external TTS APIs.
+- No paid voice APIs.
+- No silent online fallback.
+- Temporary audio storage only.
+- Audio cleanup after playback or expiration.
+- Clear error handling.
+- Stop-speaking control.
+- Avoid simultaneous playback and microphone recording.
+
+If the chosen voice does not support Tamil, document the limitation and implement a practical alternative.
+
+Do not claim that a Tamil voice is available until it has been installed and tested.
+
+If TTS fails, display the response as text and allow the student to retry audio playback.
+
+---
+
+# 13. COMPLETE VOICE INTERACTION LOOP
+
+Implement the complete following process:
+
+1. Student presses the microphone button.
+2. The browser requests microphone permission if necessary.
+3. The interface displays a recording indicator.
+4. Audio is captured.
+5. Recording stops when the student finishes or presses stop.
+6. The local speech recognition engine converts audio into text.
+7. Recognized text appears in the conversation.
+8. The frontend sends the text to the Express backend.
+9. The backend updates the conversation state.
+10. The local AI identifies the student's intent.
+11. The backend retrieves course records when needed.
+12. The course matcher identifies relevant database-listed courses.
+13. The backend validates the recommendations.
+14. The local AI generates a conversational explanation using the approved data.
+15. The backend validates the final response.
+16. The response appears in the chat interface.
+17. The local TTS engine generates audio.
+18. The frontend plays the audio.
+19. Playback stops before the next microphone recording begins.
+20. The student can ask another question using voice or text.
+
+Do not skip the actual speech recognition or speech synthesis stages.
+
+Do not simulate a microphone interaction by displaying prerecorded text.
+
+Do not use the browser's cloud-dependent speech recognition implementation as a substitute for the required local engine.
+
+If the selected implementation cannot complete a stage, clearly document that limitation and provide the nearest working local implementation.
+
+---
+
+# 14. MULTILINGUAL SUPPORT
+
+Support three main interaction styles:
+
+1. English.
+2. Tamil.
+3. Tanglish, meaning Tamil written using English letters.
+
+Also support Tamil-English code-switching where practical.
+
+The assistant should normally respond in the language used by the student.
+
+Allow the student to select a preferred language manually.
+
+Suggested language options:
+
+- English.
+- தமிழ்.
+- Tanglish.
+
+The selected language should influence:
+
+- Follow-up questions.
+- Course explanations.
+- Error messages.
+- Roadmap explanations.
+- Spoken responses.
+
+Preserve official course names in their original form.
+
+The assistant may explain course information in Tamil or Tanglish, but the stored official course name must remain unchanged.
+
+Examples:
+
+Student:
+
+"Enakku Computer Science pudikkum."
+
+Assistant:
+
+"Super! Unakku programming, AI, illa digital design-la edhu romba interest?"
+
+This is an example of the desired conversational style, not a guarantee that the selected model will produce perfect Tanglish.
+
+Student:
+
+"I like biology."
+
+Assistant:
+
+"That's great! Are you more interested in laboratory science, biological research, or working with health-related data?"
+
+When speech recognition is uncertain, request repetition instead of guessing.
+
+---
+
+# 15. CONVERSATION STATE AND PRIVACY
+
+Maintain conversation context during the active session.
+
+Store only what is necessary to support the conversation.
+
+Use a session structure such as:
+
+{
+  "session_id": "temporary-session-id",
+  "student_profile": {
+    "student_name": null,
+    "preferred_language": "English",
+    "favourite_subjects": [],
+    "interests": [],
+    "career_interests": []
+  },
+  "conversation_history": [],
+  "recommended_course_ids": [],
+  "conversation_stage": "welcome"
+}
+
+Generate a suitable temporary session ID on the backend.
+
+Do not treat this illustrative structure as permission to collect unnecessary personal information.
+
+## Privacy requirements
+
+- Do not save student conversations permanently by default.
+- Do not store microphone recordings permanently.
+- Delete temporary audio files after use.
+- Do not transmit student data to external AI services.
+- Do not log entire conversations in production logs.
+- Provide a restart option that clears the current session.
+- Clear temporary profile data when the conversation is restarted.
+- Do not store unnecessary student contact information.
+- Keep error logs free of sensitive conversational details.
+
+The application must operate without requiring student accounts or passwords for the prototype.
+
+---
+
+# 16. USER INTERFACE DESIGN
+
+Create a clean, modern, professional admission-assistant interface.
+
+Use React and CSS.
+
+The design should feel like a modern educational application rather than a basic messaging page.
+
+Prioritize clarity and usability over excessive animation.
+
+## Main interface
+
+Include:
+
+### A. Header
+
+Display:
+
+- PMIST Voice AI Admission Assistant.
+- A short welcome message.
+- Current language.
+- Local AI connection status.
+
+Do not falsely display a connected status when the local model is unavailable.
+
+### B. Conversation area
+
+Display:
+
+- Assistant message bubbles.
+- Student message bubbles.
+- Conversation history.
+- Recognized speech text.
+- Processing indicators.
+- Error messages.
+- Follow-up questions.
+
+### C. Voice controls
+
+Include:
+
+- Microphone button.
+- Recording indicator.
+- Stop-recording control if supported.
+- Send button.
+- Text-input field.
+- Stop-speaking button.
+- Retry-audio button where practical.
+
+### D. Course recommendation cards
+
+Each card should show:
+
+- Official course name.
+- Degree level when supported.
+- Short explanation.
+- Why it may match the student's interests.
+- Relevant skills.
+- Possible career directions.
+- Availability-verification notice when necessary.
+
+The frontend must render only course records returned and validated by the backend.
+
+### E. Personalized roadmap
+
+Create a visually organized roadmap using React components.
+
+Display stages such as:
+
+- Build foundational skills.
+- Learn relevant concepts.
+- Complete suggested projects.
+- Gain practical experience.
+- Explore career directions.
+- Check admission information.
+
+Clearly mark general learning activities as suggestions.
+
+Do not label suggested steps as official semester subjects.
+
+### F. Additional controls
+
+Include:
+
+- Restart conversation.
+- Language selector.
+- Show available courses.
+- Expand course details.
+- Ask another question.
+
+## Design expectations
+
+- Responsive layout.
+- Accessible text contrast.
+- Clear button labels.
+- Keyboard support.
+- Proper loading indicators.
+- No unnecessary decorative animations.
+- No remote assets required at runtime.
+
+---
+
+# 17. SUGGESTED PROJECT STRUCTURE
+
+Use the following maintainable structure:
+
+pmist-voice-assistant/
+│
+├── client/
+│   ├── public/
+│   │
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ChatWindow.jsx
+│   │   │   ├── MessageBubble.jsx
+│   │   │   ├── VoiceControls.jsx
+│   │   │   ├── CourseCard.jsx
+│   │   │   ├── CourseList.jsx
+│   │   │   ├── Roadmap.jsx
+│   │   │   ├── LanguageSelector.jsx
+│   │   │   └── StatusIndicator.jsx
+│   │   │
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── styles.css
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/
+│   ├── data/
+│   │   └── courses.json
+│   │
+│   ├── routes/
+│   │   ├── chat.js
+│   │   ├── courses.js
+│   │   └── speech.js
+│   │
+│   ├── services/
+│   │   ├── llmService.js
+│   │   ├── speechRecognition.js
+│   │   ├── textToSpeech.js
+│   │   ├── courseMatcher.js
+│   │   ├── roadmapService.js
+│   │   └── courseValidator.js
+│   │
+│   ├── utils/
+│   │   ├── sessionManager.js
+│   │   └── validation.js
+│   │
+│   ├── app.js
+│   ├── package.json
+│   └── .env.example
+│
+├── models/
+│   └── README.md
+│
+├── scripts/
+│   └── validate-courses.js
+│
+├── .gitignore
+├── package.json
+└── README.md
+
+You may adjust this structure if doing so simplifies implementation.
+
+Do not create unnecessary files or services merely to match the proposed structure.
+
+The project should be understandable to a student with basic JavaScript knowledge.
+
+Do not put all the application logic into one enormous file.
+
+---
+
+# 18. REQUIRED BACKEND API
+
+Implement at least the following endpoints.
+
+## POST /api/chat
+
+Purpose:
+
+Process a student's text message and return a conversational response.
+
+Example request:
+
+{
+  "sessionId": "temporary-session-id",
+  "message": "I like mathematics and programming.",
+  "preferredLanguage": "English"
+}
+
+Example response:
+
+{
+  "success": true,
+  "reply": "That's interesting! Do you enjoy building software, analysing data, or working with intelligent systems?",
+  "language": "English",
+  "stage": "discover_interests",
+  "recommendations": [],
+  "roadmap": null
+}
+
+Use a response schema that can accommodate recommendations and roadmaps when needed.
+
+## POST /api/speech/transcribe
+
+Purpose:
+
+Accept recorded audio and return locally recognized text.
+
+Requirements:
+
+- Validate audio input.
+- Process locally.
+- Apply reasonable file-size limits.
+- Remove temporary audio files.
+- Return clear errors.
+
+## POST /api/speech/synthesize
+
+Purpose:
+
+Convert response text to speech using the installed local TTS engine.
+
+Requirements:
+
+- Validate text.
+- Use local voice models.
+- Return playable audio or an appropriate local audio response.
+- Handle unsupported languages gracefully.
+
+## GET /api/courses
+
+Purpose:
+
+Return the course inventory from the local JSON database.
+
+Allow filtering or searching only within approved database records.
+
+Include availability-status information.
+
+## GET /api/courses/:id
+
+Purpose:
+
+Return details for an existing course record.
+
+Reject unknown course IDs.
+
+## POST /api/recommendations
+
+Purpose:
+
+Accept the student's structured interests and return relevant courses from the local database.
+
+The backend must independently calculate and validate the recommendations.
+
+Do not accept arbitrary course names as authoritative input.
+
+## POST /api/roadmap
+
+Purpose:
+
+Generate a personalized roadmap for a course that exists in the approved database.
+
+Reject unknown course IDs.
+
+The roadmap must use the supplied record and clearly distinguish suggested learning guidance from official information.
+
+## GET /api/health
+
+Purpose:
+
+Return local application status, including whether required services are available.
+
+Do not expose unnecessary system information.
+
+Do not report the AI as ready when Ollama is unavailable.
+
+---
+
+# 19. DEPENDENCIES AND INSTALLATION
+
+Provide exact installation instructions for Windows.
+
+The developer primarily uses Windows and Visual Studio Code.
+
+Assume the developer may have limited experience with local AI installation and backend configuration.
+
+The README must explain:
+
+1. Installing Node.js.
+2. Checking the Node.js and npm versions.
+3. Installing Ollama.
+4. Downloading the selected local language model.
+5. Testing the model directly in a terminal.
+6. Installing the speech recognition engine.
+7. Downloading the required speech recognition model.
+8. Installing the local TTS engine.
+9. Downloading the required voice models.
+10. Installing project dependencies.
+11. Starting the backend.
+12. Starting the frontend.
+13. Opening the application in a browser.
+14. Granting microphone permission.
+15. Testing typed conversation.
+16. Testing voice input.
+17. Testing spoken responses.
+18. Testing course recommendations.
+19. Testing the application with the internet disconnected.
+
+Give exact commands that match the actual project implementation.
+
+Do not provide commands for dependencies that the code does not use.
+
+Do not assume that a Linux-only installation command works in Windows PowerShell.
+
+Where an engine requires a separate Windows installation or executable, explain how the application locates it.
+
+Use environment variables for local executable paths and model configuration where appropriate.
+
+Provide `.env.example` files, but do not commit secrets or private information.
+
+---
+
+# 20. LOCAL MODEL SELECTION AND TESTING
+
+Before choosing the final model, compare practical candidates for local inference.
+
+Evaluate models based on:
+
+- Memory requirements.
+- English quality.
+- Tamil quality.
+- Tanglish handling.
+- Response speed.
+- Structured-output reliability.
+- Ollama compatibility.
+- Offline operation.
+
+Prefer a quantized model that can run comfortably on the Lenovo LOQ with 16 GB RAM and an RTX 4050 6 GB GPU.
+
+Do not select a large model simply because it performs well on unrelated benchmarks.
+
+Provide the exact Ollama command to download the selected model.
+
+For example, use the general command format:
+
+`ollama pull <selected-model>`
+
+Replace the placeholder with a real model identifier that has been checked for compatibility.
+
+Then provide the command to test it locally.
+
+For example:
+
+`ollama run <selected-model>`
+
+Replace the placeholder with the same selected model identifier.
+
+Check the actual installed Ollama model list before claiming that the model is available.
+
+Document the tested configuration and any known language limitations.
+
+Do not make up benchmark results.
+
+If no model achieves acceptable Tamil or Tanglish quality, explain the limitation honestly and prioritize a reliable English conversation plus the best tested Tamil alternative.
+
+---
+
+# 21. ERROR HANDLING
+
+The application must handle failures without crashing or inventing information.
+
+Implement appropriate handling for:
+
+- Ollama not running.
+- Selected language model missing.
+- Local model taking too long to respond.
+- Speech recognition executable missing.
+- Speech recognition model missing.
+- Unsupported audio format.
+- Microphone permission denied.
+- Empty speech recognition result.
+- Unclear student input.
+- TTS voice missing.
+- TTS generation failure.
+- Invalid course JSON.
+- Missing course records.
+- Unknown course ID.
+- No suitable course match.
+- Invalid model-generated JSON.
+- Invalid API request.
+- Backend unavailable.
+- Frontend-backend connection failure.
+
+Display simple messages that help the student recover.
+
+Examples:
+
+"I couldn't understand that clearly. Could you please repeat your question?"
+
+"Voice recognition is currently unavailable. You can type your question instead."
+
+"I couldn't find a suitable match in the available PMIST course records. Would you like to explore the available courses?"
+
+"The local AI service is unavailable. Please check that Ollama is running and try again."
+
+Do not silently substitute invented answers when a required service fails.
+
+---
+
+# 22. IMPLEMENTATION PRIORITIES
+
+The deadline is tomorrow. Follow this sequence.
+
+## Priority 1: Functional application foundation
+
+Build:
+
+- React frontend.
+- Express backend.
+- Local JSON course database.
+- Working frontend-backend communication.
+- Chat interface.
+- Session management.
+- Basic error handling.
+
+Confirm that typed messages can travel from the frontend to the backend and receive responses.
+
+## Priority 2: Course matching and validation
+
+Implement:
+
+- Course extraction from the supplied document.
+- JSON schema and validation.
+- Interest matching.
+- Backend recommendation filtering.
+- Course ID validation.
+- No-match behavior.
+- Personalized roadmap generation.
+
+At this stage, the assistant must already be prevented from inventing course recommendations.
+
+## Priority 3: Local language model
+
+Implement:
+
+- Ollama connection.
+- Model selection.
+- Conversation generation.
+- Structured interest extraction.
+- English and Tamil tests.
+- Tanglish tests.
+- Database-grounded response generation.
+
+Do not allow the AI model to bypass backend course validation.
+
+## Priority 4: Voice input and output
+
+Implement:
+
+- Local speech recognition.
+- Microphone capture.
+- Audio upload.
+- Local transcription.
+- Local text-to-speech.
+- Audio playback.
+- Stop-speaking control.
+- Recording and processing indicators.
+
+Verify that a student can speak, receive a response, and continue speaking without manually typing every message.
+
+## Priority 5: Final demonstration and testing
+
+Test:
+
+- Application startup.
+- Local model connection.
+- Typed conversations.
+- English voice input.
+- Tamil voice input where supported.
+- Tanglish recognition.
+- Spoken responses.
+- Course recommendations.
+- Course validation.
+- Roadmap rendering.
+- Session restart.
+- Microphone errors.
+- Model errors.
+- Offline operation.
+
+Do not spend excessive time polishing animations before the end-to-end voice workflow works.
+
+---
+
+# 23. TEST CASES AND ACCEPTANCE CRITERIA
+
+The application is not complete until the following critical tests have been performed.
+
+## Test 1: Welcome conversation
+
+Input:
+
+"Hi."
+
+Expected:
+
+The assistant greets the student and asks for their name.
+
+## Test 2: Conversation memory
+
+Input:
+
+"My name is Arjun."
+
+Then:
+
+"I like programming."
+
+Expected:
+
+The assistant uses the supplied name where appropriate and does not ask for the same information again unnecessarily.
+
+## Test 3: Relevant course recommendations
+
+Input:
+
+"I enjoy mathematics, programming and solving logical problems."
+
+Expected:
+
+The backend matches the student's interests against the approved local course database and returns relevant listed courses.
+
+The AI explains the matches using only supplied course details.
+
+## Test 4: Interest clarification
+
+Input:
+
+"I like science."
+
+Expected:
+
+The assistant asks a short follow-up question to understand the student's interests more clearly.
+
+It must not immediately assume a particular career or course.
+
+## Test 5: Nonexistent course protection
+
+Suppose the language model generates a fictional course called "B.Tech. Artificial Intelligence and Game Engineering."
+
+Expected:
+
+The backend rejects that course if it does not exist as an approved course record.
+
+The fictional course must not appear as a PMIST recommendation.
+
+## Test 6: No matching course
+
+Input:
+
+"I want to study a subject that is not represented by any relevant course in the supplied inventory."
+
+Expected:
+
+The assistant explains that it could not identify a suitable match and offers to show the available course inventory or contact admissions.
+
+It must not invent a new course.
+
+## Test 7: Current availability limitation
+
+A course is present in the document but remains `listed_unverified`.
+
+Expected:
+
+The assistant may identify it as a potentially relevant listed course, but must not claim that it is currently open for admission.
+
+## Test 8: Roadmap generation
+
+Input:
+
+A student selects a course returned by the backend.
+
+Expected:
+
+The application displays a roadmap derived from the supplied course record and clearly labelled general learning suggestions.
+
+No unsupported semester-wise syllabus is invented.
+
+## Test 9: Tamil or Tanglish interaction
+
+Input:
+
+"Enakku computer science pudikkum."
+
+Expected:
+
+The application processes the input locally, attempts to understand the student's interest, and responds in the selected or detected language when supported.
+
+If recognition is unclear, it asks the student to repeat the question.
+
+## Test 10: Voice output
+
+Input:
+
+A student submits a question by voice.
+
+Expected:
+
+The application recognizes the speech locally, sends the text to the backend, generates a response, and reads it aloud using the local TTS engine.
+
+## Test 11: TTS failure
+
+Expected:
+
+The text response remains visible and the student can retry speech playback.
+
+## Test 12: AI service unavailable
+
+Expected:
+
+The application displays a useful error rather than pretending the local model responded.
+
+## Test 13: Restart conversation
+
+Expected:
+
+The application clears the current session's conversation context and temporary student profile.
+
+It starts a fresh conversation.
+
+## Test 14: Offline operation
+
+After the initial installation and model downloads:
+
+1. Disconnect the computer from the internet.
+2. Start the local services.
+3. Open the frontend.
+4. Test a conversation.
+5. Request a course recommendation.
+6. Generate a roadmap.
+7. Test speech recognition and TTS.
+
+Expected:
+
+The installed application works without contacting cloud AI, cloud speech, or remote TTS services.
+
+If any component cannot operate offline, identify the problem and fix it or document the limitation explicitly.
+
+---
+
+# 24. SECURITY, PRIVACY, AND RELIABILITY
+
+Implement reasonable safeguards appropriate for a local college prototype.
+
+Requirements:
+
+- Validate incoming API requests.
+- Limit uploaded audio file sizes.
+- Use safe temporary file handling.
+- Avoid shell-command injection.
+- Use a fixed, validated course database path.
+- Validate course IDs.
+- Validate structured AI output.
+- Handle unexpected errors.
+- Avoid permanent storage of conversations.
+- Delete temporary audio files.
+- Avoid exposing internal file paths in public error messages.
+- Keep student data on the local machine.
+- Do not introduce unnecessary user accounts.
+- Do not claim that the application provides official admission decisions.
+
+The system should not make admissions eligibility decisions.
+
+Its role is to help students explore interests and discover potentially relevant listed courses.
+
+---
+
+# 25. REQUIRED DELIVERABLES
+
+Deliver a complete working project containing:
+
+1. Full React frontend source code.
+2. Full Express backend source code.
+3. Local course database extracted from the supplied document.
+4. Course database validation logic.
+5. Deterministic course-matching implementation.
+6. Backend course recommendation validation.
+7. Local Ollama integration.
+8. Local speech recognition integration.
+9. Local TTS integration.
+10. Conversation-state management.
+11. Personalized roadmap generation.
+12. Responsive user interface.
+13. Error handling.
+14. Dependency installation instructions.
+15. Model installation instructions.
+16. Exact startup commands.
+17. Offline operation instructions.
+18. Troubleshooting documentation.
+19. Test cases and their results.
+20. A README explaining the complete application.
+
+Do not include large model files in the source repository.
+
+Add appropriate model directories, temporary audio files, environment files, and dependency folders to `.gitignore`.
+
+The developer must be able to run the application from Visual Studio Code on Windows using the supplied instructions.
+
+---
+
+# 26. DEVELOPMENT METHOD
+
+Work in small, testable stages.
+
+Do not generate a large amount of code and assume everything works.
+
+Follow this sequence:
+
+**Step 1:** Inspect the supplied course document and identify the complete set of course records and associated information.
+
+**Step 2:** Check the development environment and choose a realistic local AI, speech recognition, and TTS configuration.
+
+**Step 3:** Create the project structure and install the minimum required dependencies.
+
+**Step 4:** Implement and test the Express backend.
+
+**Step 5:** Extract the supplied course information into `courses.json`.
+
+**Step 6:** Implement and test the course matcher and strict course validator.
+
+**Step 7:** Implement and test the roadmap generator.
+
+**Step 8:** Build the React interface and connect it to the backend.
+
+**Step 9:** Install and test Ollama and the selected local model.
+
+**Step 10:** Connect local AI to the conversation workflow.
+
+**Step 11:** Implement local speech recognition.
+
+**Step 12:** Implement local text-to-speech.
+
+**Step 13:** Test the complete voice interaction loop.
+
+**Step 14:** Test English, Tamil, and Tanglish as far as the selected models support them.
+
+**Step 15:** Verify offline operation and document remaining limitations.
+
+After each stage, provide the relevant test command and confirm whether the test passed.
+
+If a test fails, investigate and fix the problem before proceeding to the next stage.
+
+Do not claim that code has been tested unless it has actually been executed and the result observed.
+
+If an environment limitation prevents testing, state exactly what could not be tested.
+
+---
+
+# 27. FINAL INSTRUCTIONS TO THE CODING ASSISTANT
+
+Build the application, not merely a plan for building it.
+
+Start by inspecting the supplied file:
+
+`PMIST_Open_House_Course_Career_Chatbot.docx`
+
+Use that document as the exclusive source for institutional course information.
+
+Do not browse the internet to replace, expand, or silently update the supplied course inventory.
+
+External research is not required for course recommendations.
+
+For installation compatibility, consult technical documentation only when necessary, and do not allow that research to replace the supplied course data.
+
+Create the project files, implement the features, execute the available tests, and provide exact Windows commands.
+
+Keep the code understandable, modular, and suitable for a college project demonstration.
+
+Do not waste time on optional features before the core application works.
+
+If the full voice pipeline cannot be completed immediately, prioritize a genuinely working local backend, course matching, conversation interface, and local AI integration, then finish the missing voice components. Clearly document anything incomplete.
+
+Never simulate a completed feature or falsely claim successful testing.
+
+## Non-negotiable rules
+
+1. **Use only the supplied PMIST course document for course information.**
+2. **Never invent or silently replace PMIST course records.**
+3. **Enforce course validation in the backend.**
+4. **Do not present unverified availability as confirmed.**
+5. **Do not invent eligibility, fees, placements, or official curriculum details.**
+6. **Use a locally running AI model.**
+7. **Use local speech recognition and local text-to-speech.**
+8. **Do not silently fall back to cloud services.**
+9. **Maintain conversation context and support follow-up questions.**
+10. **Deliver a working application with setup instructions and test results.**
+
+The final objective is a friendly, multilingual, offline voice AI admission assistant that helps prospective students explore courses listed in the supplied PMIST document, understand why those courses may suit their interests, and receive personalized learning and career guidance without fabricating institutional information.
