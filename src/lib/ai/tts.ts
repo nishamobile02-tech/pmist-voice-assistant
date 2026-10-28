@@ -3,6 +3,7 @@
 // - "piper": piper-http server (fully offline). Supports en + (community) ta voices.
 import type { Language } from "@/lib/pmist/types";
 import type { TtsResponse } from "@/lib/pmist/types";
+import { ensureZaiConfig } from "./zai-config";
 
 const MAX_LEN = 1000; // z-ai limit is 1024; keep headroom
 
@@ -38,6 +39,7 @@ export async function synthesize(text: string, language: Language): Promise<TtsR
 
   // Default: managed demo TTS
   try {
+    ensureZaiConfig();
     const ZAI = (await import("z-ai-web-dev-sdk")).default;
     const zai = await ZAI.create();
     // English-capable, warm voice. Tamil is NOT supported by this engine:

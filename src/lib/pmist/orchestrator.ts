@@ -3,6 +3,7 @@ import { chatComplete, extractJson, type ChatTurn } from "@/lib/ai/llm";
 import { detectLanguage, toSpeechText } from "./language";
 import { getAllCourses, getCourseByCode, type CourseRecord } from "./course-store";
 import { matchCourses, type CourseMatch } from "./course-matcher";
+import { ruleBasedReply } from "./rule-based";
 import type { ChatResponse, Language, Recommendation, Stage } from "./types";
 
 interface ProfileState {
@@ -299,19 +300,51 @@ export async function handleChat(sessionId: string, message: string): Promise<Ch
   try {
     raw = await chatComplete(messages, { temperature: 0.7, json: true });
   } catch (err) {
-    const fallback =
-      language === "ta"
-        ? "மன்னிக்கவும், எனக்கு சற்று சிக்கல் ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்."
-        : language === "tanglish"
-          ? "Sorry, enakku konjam problem aachu. Thirumbi try pannunga please."
-          : "Sorry, I had a little trouble on my side. Could you please try again?";
-    return {
-      reply: fallback,
-      speechText: toSpeechText(fallback),
+    // Offline-safe degraded mode: guided rule-based conversation (no cloud fallback).
+    console.warn("[chat] LLM unavailable, using rule-based mode:", err instanceof Error ? err.message : err);
+    const rule = ruleBasedReply(stage, { ...profile, turnCount: profile.turnCount }, trimmed, matches, language);
+    const ruleMatches = matchCourses(
+      [...Array.from(new Set([...profile.interests, ...rule.profileUpdates.interests])), rule.profileUpdates.careerGoal ?? ""],
+      allCourses,
+      3
+    );
+    const ruleRecos =
+      rule.recommendedCodes.length > 0
+        ? toRecommendations(rule.recommendedCodes, ruleMatches, language)
+        : undefined;
+    const nextStage = rule.stage;
+    const ruleInterests = Array.from(new Set([...profile.interests, ...rule.profileUpdates.interests])).slice(0, 12);
+    const turnCount = profile.turnCount + 1;
+    const profileData = {
+      name: rule.profileUpdates.name ?? profile.name,
       language,
-      stage,
-      profile: { name: profile.name, interests: profile.interests, careerGoal: profile.careerGoal, language },
-      error: err instanceof Error ? err.message : "LLM error",
+      interests: JSON.stringify(ruleInterests),
+      careerGoal: profile.careerGoal,
+      stage: nextStage,
+      turnCount,
+      lastRecommendedCodes: JSON.stringify(ruleRecos?.map((r) => r.code) ?? []),
+    };
+    await db.studentProfile.upsert({
+      where: { sessionId },
+      create: { sessionId, ...profileData },
+      update: profileData,
+    });
+    await db.chatMessage.create({ data: { sessionId, role: "user", content: trimmed, language } });
+    await db.chatMessage.create({ data: { sessionId, role: "assistant", content: rule.reply, language } });
+    return {
+      reply: rule.reply,
+      speechText: toSpeechText(rule.reply),
+      language,
+      stage: nextStage,
+      recommendations: ruleRecos && ruleRecos.length > 0 ? ruleRecos : undefined,
+      roadmap: null,
+      profile: {
+        name: rule.profileUpdates.name ?? profile.name,
+        interests: ruleInterests,
+        careerGoal: profile.careerGoal,
+        language,
+      },
+      error: err instanceof Error ? err.message : "LLM unavailable",
     };
   }
 

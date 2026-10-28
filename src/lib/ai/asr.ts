@@ -1,6 +1,8 @@
 // Speech-to-text provider abstraction.
 // - "zai": managed ASR (hosted demo)
 // - "whisper": whisper.cpp server (fully offline, e.g. `whisper-server -m models/ggml-base.bin --port 8080`)
+import { ensureZaiConfig } from "./zai-config";
+
 export interface AsrResult {
   text: string;
   provider: string;
@@ -27,6 +29,7 @@ export async function transcribeBase64(audioBase64: string): Promise<AsrResult> 
   }
 
   // Default: managed demo ASR
+  ensureZaiConfig();
   const ZAI = (await import("z-ai-web-dev-sdk")).default;
   const zai = await ZAI.create();
   const response = await zai.audio.asr.create({ file_base64: audioBase64 });

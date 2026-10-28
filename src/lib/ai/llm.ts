@@ -2,6 +2,7 @@
 // - "zai": managed model (used for the hosted demo; backend-only SDK)
 // - "ollama": fully offline local model via Ollama (college deployment)
 import ZAI from "z-ai-web-dev-sdk";
+import { ensureZaiConfig } from "./zai-config";
 
 export interface ChatTurn {
   role: "system" | "user" | "assistant";
@@ -47,6 +48,7 @@ export async function chatComplete(
   }
 
   // Default: managed demo model
+  ensureZaiConfig();
   const zai = await ZAI.create();
   const completion = await zai.chat.completions.create({
     messages,
