@@ -104,3 +104,28 @@ Work Log:
 Stage Summary:
 - Delivered: working app (local + Vercel), GitHub repo, README runbook, offline provider switches, rule-based degraded mode.
 - Honest gaps: Render deploy needs user's payment setup; course data still placeholder pending official PMIST list; Tamil TTS via browser OS voice in demo mode.
+
+---
+Task ID: 12
+Agent: main (Z.ai Code)
+Task: Integrate the official PMIST course list (52 courses) supplied by the user
+
+Work Log:
+- User supplied the official course document (PMIST_Open_House_Course_Career_Chatbot.docx): 52 programmes (22 B.Tech + B.Arch + 12 Computing/Arts&Science UG + 6 Commerce + 4 BBA + 3 Humanities + 2 Education + 3 new 2026-27 TATTI courses), each with "best suited for" line, 5 roadmap steps and career directions, plus the subject-to-course matching table.
+- prisma/schema.prisma: Course model += bestSuitedFor, roadmapSteps (JSON), isNew2026, association; db:push to Neon OK.
+- src/lib/pmist/data/courses.json: fully rewritten with the 52 verified courses (verbatim official roadmap steps/careers; standard programme durations; isNew2026+TATTI flags; subjectGroups matching table embedded in meta).
+- course-store.ts: new fields in CourseRecord/toRecord; seeding marks isPlaceholder=false; added syncCoursesFromJson() (idempotent upsert + stale-row deletion); /api/courses now returns meta (source, academicYear, note).
+- scripts/seed-courses.ts: full-sync upsert — synced 52 official courses, removed 13 stale placeholder rows, 0 placeholders remaining.
+- course-matcher.ts: ~120 new synonyms (uav/drones, ev/battery, fintech, hospitality, logistics, film/journalism, renewable, teaching, company secretary, etc.).
+- roadmap-service.ts: roadmap sections now map the 5 OFFICIAL steps positionally (foundations→skills→projects→internships→next steps) + official careers; LLM only writes the personal note; new disclaimer.
+- orchestrator.ts: candidates prompt uses bestSuitedFor; reply-text validation now against the WHOLE verified catalogue (real course outside this turn's candidates no longer falsely wiped); new guard blocks invented courses when candidates=null (MBBS case); honest no-match reply no longer paired with course cards; course-list wording de-placeholdered.
+- UI: PlaceholderBanner.tsx adds VerifiedBanner (green, 52-programme count + meta note); page.tsx renders it when verified; CourseCard shows "New 2026-27 · with TATTI" badge; prompt example updated to real codes.
+- Fixed: unquoted "drone pilot" synonym key (compile error), 7 duplicate synonym keys, page.tsx count typing.
+- Verified: /api/courses → verified=true, count=52; Tanglish business flow → CO-BCOM/MG-BBA/CO-BCOM-CA; drone-pilot EN flow → BT-AE-UAV top match; MBBS → honest rejection, no fake codes; roadmap for BT-AE-UAV shows official steps verbatim; lint + tsc clean (app scope).
+- Agent Browser E2E: green verified banner renders; Kavya→drawing/buildings→B.Arch [AR-BARCH] card + official roadmap (all sections + disclaimer); Tanglish Divya→BBA Digital Marketing [MG-BBA-DM] + alternatives; restart clears; TTS speaks with Stop button; mobile 390x844 holds; zero console/page errors.
+- README.md: status note → VERIFIED (52 programmes), "Updating the course list" section rewritten (new JSON fields + idempotent sync), API table meta, limitations updated.
+
+Stage Summary:
+- The last "pending official course list" gap is closed: the assistant now recommends ONLY the 52 officially supplied PMIST programmes and roadmaps come verbatim from the official document (LLM invents nothing but the personal note).
+- Dev server restarted with exported Neon DATABASE_URL (fresh shells override .env with stale file: URL — remember to export).
+- Remaining honest caveats: confirm catalogue against the final 2026-27 brochure per PMIST's own note; Tamil TTS still browser-voice in demo mode.

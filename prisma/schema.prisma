@@ -20,6 +20,10 @@ model Course {
   interests     String   @default("[]") // JSON array of interest tags
   skills        String   @default("[]") // JSON array
   careers       String   @default("[]") // JSON array
+  bestSuitedFor String   @default("") // official "best suited to students interested in" line
+  roadmapSteps  String   @default("[]") // JSON array — official roadmap steps from supplied PMIST document
+  isNew2026     Boolean  @default(false) // new course listed for 2026-27
+  association   String? // e.g. "TATTI" when offered in association with another institute
   isPlaceholder Boolean  @default(true) // true until official PMIST list is verified
   createdAt     DateTime @default(now())
 }

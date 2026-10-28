@@ -58,7 +58,7 @@ function buildSystemPrompt(profile: ProfileState, candidates: CourseRecord[] | n
       ? `CANDIDATE COURSES (the ONLY courses you may name or recommend — use their exact official names and codes):\n${candidates
           .map(
             (c) =>
-              `- code: ${c.code} | name: ${c.name} | ${c.level}, ${c.duration}, ${c.stream} | about: ${c.description}`
+              `- code: ${c.code} | name: ${c.name} | ${c.level}, ${c.duration}, ${c.stream} | best suited for: ${c.bestSuitedFor || c.description}`
           )
           .join("\n")}`
       : "CANDIDATE COURSES: none this turn.";
@@ -90,7 +90,7 @@ OUTPUT: reply with STRICT JSON only (no markdown, no extra text), exactly this s
 {"reply":"<your spoken reply>","profileUpdates":{"name":"<name or null>","interests":["<subject/interest words mentioned>"],"careerGoal":"<career they want or null>"},"recommendedCodes":["<code from candidates only>"],"readyToRecommend":true|false}
 
 Example (when recommending):
-{"reply":"Super Arjun! I suggest B.Tech Computer Science and Engineering [BT-CSE]. It matches your love for programming and game development. We also have B.Tech Artificial Intelligence and Data Science [BT-AIDS] if AI excites you more.","profileUpdates":{"name":null,"interests":["game development"],"careerGoal":null},"recommendedCodes":["BT-CSE","BT-AIDS"],"readyToRecommend":true}
+{"reply":"Super Arjun! I suggest B.Tech Computer Science and Engineering [BT-CSE]. It matches your love for programming and game development. We also have B.Tech CSE with specialization in Artificial Intelligence and Machine Learning [BT-CSE-AIML] if AI excites you more.","profileUpdates":{"name":null,"interests":["game development"],"careerGoal":null},"recommendedCodes":["BT-CSE","BT-CSE-AIML"],"readyToRecommend":true}
 - profileUpdates: ONLY new info from this turn; null for unmentioned fields.
 - recommendedCodes: ONLY when recommending this turn; codes must be from CANDIDATE COURSES.
 - readyToRecommend: true when the student asks for a suggestion OR their interests are clear.`;
@@ -174,7 +174,7 @@ function resolveRecommendations(
   return { resolved, unknown };
 }
 
-/** Guard: does the reply mention any course NOT in the allowed set? */
+/** Guard: does the reply mention any course NOT in the allowed (verified) set? */
 function findInvalidCourseMentions(reply: string, allowed: CourseRecord[], all: CourseRecord[]): string[] {
   const banned: string[] = [];
   const replyNorm = normalizeName(reply);
@@ -220,6 +220,9 @@ function toRecommendations(codes: string[], matches: CourseMatch[], language: La
       skills: match.course.skills,
       careers: match.course.careers,
       isPlaceholder: match.course.isPlaceholder,
+      bestSuitedFor: match.course.bestSuitedFor,
+      isNew2026: match.course.isNew2026,
+      association: match.course.association,
       whyItFits: reason,
       isTop: idx === 0,
     });
@@ -366,11 +369,15 @@ export async function handleChat(sessionId: string, message: string): Promise<Ch
   let reply = (parsed.reply ?? "").trim() || "Could you say that again in a little more detail?";
   let recommendations: Recommendation[] | undefined;
   let recommendedCodes: string[] = [];
+  let replyWipedToHonest = false; // reply replaced by honest no-match message
 
   // ---- Recommendation validation (hard backend rule) -----------------------
+  // Reply TEXT is validated against the whole verified catalogue (a real PMIST
+  // course may be named even when it is not this turn's candidate); course
+  // CARDS are only ever built from candidate matches (toRecommendations).
   if (candidates && candidates.length > 0 && parsed.recommendedCodes && parsed.recommendedCodes.length > 0) {
     const { resolved, unknown } = resolveRecommendations(parsed.recommendedCodes, candidates);
-    const invalidMentions = findInvalidCourseMentions(reply, candidates, allCourses);
+    const invalidMentions = findInvalidCourseMentions(reply, allCourses, allCourses);
 
     if (unknown.length > 0 || invalidMentions.length > 0) {
       // Model tried to recommend a non-verified course -> one corrective pass
@@ -390,24 +397,39 @@ export async function handleChat(sessionId: string, message: string): Promise<Ch
       } catch {
         // keep first reply; codes stay empty -> honest fallback below
       }
-      const stillInvalid = findInvalidCourseMentions(reply, candidates, allCourses);
+      const stillInvalid = findInvalidCourseMentions(reply, allCourses, allCourses);
       if (stillInvalid.length > 0) {
         reply = honestNoMatchReply(language);
         recommendedCodes = [];
+        replyWipedToHonest = true;
       }
     } else {
       recommendedCodes = resolved;
     }
   } else if (candidates && candidates.length > 0) {
-    const invalidMentions = findInvalidCourseMentions(reply, candidates, allCourses);
+    const invalidMentions = findInvalidCourseMentions(reply, allCourses, allCourses);
     if (invalidMentions.length > 0) {
       console.warn("[chat] invalid course mention without codes:", invalidMentions);
       reply = honestNoMatchReply(language);
+      replyWipedToHonest = true;
+    }
+  } else {
+    // No candidates this turn (e.g. student asked for an unlisted programme):
+    // still block any invented course names in the reply text.
+    const invalidMentions = findInvalidCourseMentions(reply, allCourses, allCourses);
+    if (invalidMentions.length > 0) {
+      console.warn("[chat] invalid course mention with no candidates:", invalidMentions);
+      reply = honestNoMatchReply(language);
+      replyWipedToHonest = true;
     }
   }
 
   // ---- Attach recommendation cards (all codes already validated above) -----
-  if (recommendedCodes.length > 0 && matches.length > 0) {
+  if (replyWipedToHonest) {
+    // honest no-match reply must not be paired with course cards
+    recommendations = undefined;
+    if (stage === "recommend") stage = "discovery";
+  } else if (recommendedCodes.length > 0 && matches.length > 0) {
     recommendations = toRecommendations(recommendedCodes, matches, language);
     stage = "followup";
   } else if (stage === "recommend" && candidates && candidates.length > 0 && matches.length > 0) {
@@ -426,7 +448,10 @@ export async function handleChat(sessionId: string, message: string): Promise<Ch
       skills: c.skills,
       careers: c.careers,
       isPlaceholder: c.isPlaceholder,
-      whyItFits: "Available at PMIST as listed in our current catalogue (development data).",
+      bestSuitedFor: c.bestSuitedFor,
+      isNew2026: c.isNew2026,
+      association: c.association,
+      whyItFits: "Offered at PMIST as per the official course inventory.",
       isTop: false,
     }));
   } else if (stage === "recommend") {

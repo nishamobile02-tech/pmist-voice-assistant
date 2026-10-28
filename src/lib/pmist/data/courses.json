@@ -1,186 +1,1047 @@
 {
   "meta": {
-    "institution": "Periyar Maniammai Institute of Science and Technology (PMIST), Thanjavur, Tamil Nadu",
-    "verified": false,
-    "note": "DEVELOPMENT PLACEHOLDER DATA. This list is based on publicly known PMIST program offerings but has NOT been verified against the official 2024-25 admission brochure. It must be replaced with the official PMIST course list before any real use. Never present these entries as guaranteed current PMIST offerings.",
-    "lastUpdated": "2025-01-01"
+    "verified": true,
+    "institution": "Periyar Maniammai Institute of Science and Technology (PMIST), Thanjavur",
+    "source": "PMIST_Open_House_Course_Career_Chatbot.docx — working inventory of courses from PMIST admission/home pages and course listing pages",
+    "academicYear": "2026-27",
+    "note": "Official working inventory supplied by PMIST. Availability, nomenclature, specializations, duration, eligibility and admission year can change — confirm every course against the current 2026-27 official brochure/admission application and department pages. Durations shown are standard programme norms; confirm with the admissions office."
   },
-  "courses": [
+  "subjectGroups": [
     {
-      "code": "BT-CSE",
-      "name": "B.Tech Computer Science and Engineering",
-      "level": "UG",
-      "stream": "Engineering & Technology",
-      "duration": "4 years",
-      "description": "Covers programming, data structures, algorithms, databases, operating systems, networks and software engineering, with modern electives in AI and web technologies.",
-      "interests": ["computer science", "programming", "coding", "software", "computers", "algorithms", "web development", "app development", "technology", "artificial intelligence", "game development", "problem solving", "maths", "mathematics"],
-      "skills": ["Programming (C, Java, Python)", "Data structures & algorithms", "Web and mobile app development", "Database design", "Software engineering", "Teamwork on projects"],
-      "careers": ["Software Engineer", "Web / App Developer", "Systems Analyst", "QA Engineer", "Higher studies (M.Tech / MCA)"]
+      "interest": "Mathematics / Physics",
+      "matches": ["Engineering", "Architecture", "B.Sc. Mathematics", "B.Sc. Physics", "Data Science", "AI", "Renewable Energy"],
+      "followUp": "Ask about interest in building/designing, coding/data, electronics, energy or research."
     },
     {
-      "code": "BT-AIDS",
-      "name": "B.Tech Artificial Intelligence and Data Science",
+      "interest": "Computer Science / ICT",
+      "matches": ["B.Tech. CSE and specializations", "BCA", "B.Sc. Computer Science", "AI", "Data Science", "Cyber Security", "AR & VR"],
+      "followUp": "Ask whether the student enjoys coding, solving puzzles, digital creativity or protecting systems."
+    },
+    {
+      "interest": "Biology / Life Science",
+      "matches": ["Biotechnology", "Biotechnology with Computer Science and Biology", "Healthcare Analytics"],
+      "followUp": "Explain that eligibility depends on the programme and subjects studied in Grade 12."
+    },
+    {
+      "interest": "Commerce / Accountancy / Economics",
+      "matches": ["B.Com. pathways", "Professional Accounting", "Corporate Secretaryship", "Computer Applications", "Fintech and AI", "BBA pathways"],
+      "followUp": "Ask whether the student prefers finance, business, marketing, logistics or entrepreneurship."
+    },
+    {
+      "interest": "Drawing / Design / Creativity",
+      "matches": ["B.Arch.", "Animation and Multimedia", "AR & VR", "Journalism and Mass Communication", "Film & TV Production"],
+      "followUp": "Ask about interest in buildings, visual storytelling, animation, immersive media or communication."
+    },
+    {
+      "interest": "English / Tamil / Communication",
+      "matches": ["B.A. English", "B.A. Tamil", "Journalism and Mass Communication", "BBA Digital Marketing"],
+      "followUp": "Explore writing, teaching, media, content creation and communication interests."
+    },
+    {
+      "interest": "Environment / Energy / Making things",
+      "matches": ["Civil Engineering", "Mechanical Engineering", "Aerospace Engineering", "Renewable Energy", "EEE Energy Engineering"],
+      "followUp": "Ask whether the student likes machines, structures, aircraft, sustainability or energy systems."
+    },
+    {
+      "interest": "Teaching / Helping others",
+      "matches": ["B.Sc. B.Ed.", "B.Ed."],
+      "followUp": "Ask whether the student enjoys explaining concepts, mentoring or community work."
+    }
+  ],
+  "courses": [
+    {
+      "code": "BT-AE",
+      "name": "B.Tech. Aerospace Engineering",
       "level": "UG",
       "stream": "Engineering & Technology",
       "duration": "4 years",
-      "description": "Focuses on machine learning, data analytics, deep learning, statistics and intelligent system design for building AI-powered applications.",
-      "interests": ["artificial intelligence", "ai", "machine learning", "data science", "data analytics", "statistics", "robots", "robotics", "maths", "mathematics", "programming", "computers", "technology", "chatbots", "big data"],
-      "skills": ["Python programming", "Machine learning fundamentals", "Data analysis & visualisation", "Statistics for AI", "Deep learning basics", "AI project building"],
-      "careers": ["AI / ML Engineer (entry paths)", "Data Analyst", "Business Intelligence roles", "Research assistance", "Higher studies"]
+      "description": "Best suited to students interested in: Physics, Mathematics, mechanics, aircraft and space systems.",
+      "bestSuitedFor": "Physics, Mathematics, mechanics, aircraft and space systems.",
+      "interests": ["physics", "mathematics", "mechanics", "aircraft", "space systems", "aeroplanes", "aerospace", "flight", "rockets"],
+      "skills": ["Calculus, physics & mechanics", "Aerodynamics & propulsion", "Flight mechanics & structures", "CAD & simulation"],
+      "careers": ["Aerospace engineering", "Mechanical engineering", "Aircraft systems", "Propulsion", "Testing", "Simulation", "M.Tech./M.S. or research"],
+      "roadmapSteps": [
+        "Strengthen calculus, physics, mechanics and basic programming.",
+        "Study aerodynamics, propulsion, flight mechanics, structures and control systems as offered in the curriculum.",
+        "Practise CAD/simulation and complete a small aircraft, drone or aerodynamics project.",
+        "Seek suitable internships, team projects or research exposure; build a technical portfolio.",
+        "Explore aerospace design/support, testing, manufacturing, simulation or higher studies in aerospace/mechanical fields."
+      ]
+    },
+    {
+      "code": "BT-AE-UAV",
+      "name": "B.Tech. Aerospace Engineering with specialization in Unmanned Aerial Vehicle (UAV)",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Physics, Mathematics, electronics, drones and autonomous systems.",
+      "bestSuitedFor": "Physics, Mathematics, electronics, drones and autonomous systems.",
+      "interests": ["physics", "mathematics", "electronics", "drones", "uav", "autonomous systems", "aerospace", "flight"],
+      "skills": ["Maths, physics & programming", "UAV airframes & sensors", "Flight control & navigation", "Embedded systems & computer vision"],
+      "careers": ["UAV systems", "Drone integration", "Flight testing", "Robotics", "Mapping/inspection technology", "Postgraduate study"],
+      "roadmapSteps": [
+        "Build foundations in mathematics, physics, programming and electronics.",
+        "Learn UAV airframes, sensors, flight control, navigation and relevant regulations as taught.",
+        "Build or simulate a safe small-UAV project; document design, testing and limitations.",
+        "Develop a portfolio in embedded systems, control, computer vision or flight simulation; seek an internship.",
+        "Explore UAV design/integration, testing, mapping, inspection, robotics or postgraduate specialization."
+      ]
+    },
+    {
+      "code": "BT-BT",
+      "name": "B.Tech. Biotechnology",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Biology, Chemistry, laboratory science and living systems.",
+      "bestSuitedFor": "Biology, Chemistry, laboratory science and living systems.",
+      "interests": ["biology", "chemistry", "laboratory science", "living systems", "biotechnology", "genetics", "labs"],
+      "skills": ["Biology & chemistry foundations", "Cell biology & genetics", "Microbiology & biochemistry", "Laboratory techniques"],
+      "careers": ["Biotechnology labs", "Bioprocessing", "Quality assurance", "Pharma/food/agri biotech", "Research support", "Postgraduate study"],
+      "roadmapSteps": [
+        "Strengthen biology and chemistry; learn laboratory safety and scientific record keeping.",
+        "Study cell biology, genetics, microbiology, biochemistry and biotechnology methods in the programme.",
+        "Practise lab techniques under supervision and complete a literature-based or laboratory project.",
+        "Seek supervised research/internship exposure in biotech, pharma, food, agriculture or diagnostics.",
+        "Explore laboratory, quality, production, research-assistant or regulatory-support pathways; consider M.Sc./M.Tech. or related postgraduate study."
+      ]
+    },
+    {
+      "code": "BT-BT-CSB",
+      "name": "B.Tech. Biotechnology with specialization in Computer Science and Biology",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Biology, computing, data and interdisciplinary problem solving.",
+      "bestSuitedFor": "Biology, computing, data and interdisciplinary problem solving.",
+      "interests": ["biology", "computing", "data", "interdisciplinary problem solving", "bioinformatics", "computer science"],
+      "skills": ["Biology, chemistry & maths", "Programming foundations", "Biological data methods", "Bioinformatics projects"],
+      "careers": ["Bioinformatics support", "Biological data analysis", "Biotech software/data roles", "Research support", "Postgraduate study"],
+      "roadmapSteps": [
+        "Build foundations in biology, chemistry, mathematics and introductory programming.",
+        "Study relevant biotechnology topics alongside computer science and biological data methods.",
+        "Complete a small bioinformatics or biological-data project using appropriate tools and ethical data handling.",
+        "Seek supervised project or internship experience in biotech, computational biology or health-data settings.",
+        "Explore bioinformatics, biotech data support, lab informatics or further study in biotechnology/computational biology."
+      ]
+    },
+    {
+      "code": "BT-CE",
+      "name": "B.Tech. Civil Engineering",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Mathematics, Physics, structures, buildings and infrastructure.",
+      "bestSuitedFor": "Mathematics, Physics, structures, buildings and infrastructure.",
+      "interests": ["mathematics", "physics", "structures", "buildings", "infrastructure", "construction", "surveying"],
+      "skills": ["Maths, physics & technical drawing", "Surveying & construction materials", "Structural analysis", "CAD/BIM tools"],
+      "careers": ["Construction", "Structural/design support", "Transportation", "Geotechnical", "Water/environment", "Project coordination", "M.Tech. or related study"],
+      "roadmapSteps": [
+        "Strengthen mathematics, physics, technical drawing and problem-solving.",
+        "Study surveying, construction materials, structural analysis, geotechnical, transportation and environmental topics as offered.",
+        "Use relevant CAD/BIM or surveying tools in a supervised design or site-based project.",
+        "Seek site, design-office, testing-lab or infrastructure internship exposure.",
+        "Explore graduate engineer, site/design support, quantity/surveying or higher-study pathways."
+      ]
+    },
+    {
+      "code": "BT-CE-GIS",
+      "name": "B.Tech. Civil Engineering with specialization in GIS and Remote Sensing",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Geography, Mathematics, mapping, environment and digital tools.",
+      "bestSuitedFor": "Geography, Mathematics, mapping, environment and digital tools.",
+      "interests": ["geography", "mathematics", "mapping", "environment", "digital tools", "gis", "remote sensing", "maps"],
+      "skills": ["Civil engineering & geography foundations", "GIS & remote sensing", "Spatial data & surveying", "Map-based projects"],
+      "careers": ["GIS and mapping", "Remote sensing support", "Planning", "Surveying", "Infrastructure and environmental analysis"],
+      "roadmapSteps": [
+        "Build foundations in civil engineering, geography, maps and basic computing.",
+        "Learn GIS, remote sensing, spatial data, surveying and infrastructure applications as taught.",
+        "Create a map-based project such as land-use, drainage or infrastructure mapping using suitable data.",
+        "Seek exposure to GIS teams, planning, surveying, environment or infrastructure projects.",
+        "Explore GIS technician/analyst, mapping, planning or infrastructure-data roles; consider geospatial postgraduate study."
+      ]
+    },
+    {
+      "code": "BT-CE-WR",
+      "name": "B.Tech. Civil Engineering with specialization in Water Resources",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Mathematics, Physics, environment, rivers and water systems.",
+      "bestSuitedFor": "Mathematics, Physics, environment, rivers and water systems.",
+      "interests": ["mathematics", "physics", "environment", "rivers", "water systems", "hydrology", "water", "irrigation"],
+      "skills": ["Maths & fluid mechanics", "Hydrology & hydraulics", "Water-resource systems", "Rainfall/runoff projects"],
+      "careers": ["Water resources", "Irrigation", "Hydrology", "Drainage", "Flood management", "Environmental infrastructure"],
+      "roadmapSteps": [
+        "Strengthen mathematics, fluid mechanics basics and environmental awareness.",
+        "Study hydrology, hydraulics, water-resource systems and relevant civil engineering subjects.",
+        "Develop a supervised project on rainfall/runoff, water distribution, irrigation or flood-risk mapping.",
+        "Seek internship exposure with water, irrigation, environmental or infrastructure organisations.",
+        "Explore water-resource design/support, hydrology, irrigation, environmental or postgraduate pathways."
+      ]
+    },
+    {
+      "code": "BT-CE-CM",
+      "name": "B.Tech. Civil Engineering with specialization in Construction Management",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Mathematics, planning, teamwork, construction and leadership.",
+      "bestSuitedFor": "Mathematics, planning, teamwork, construction and leadership.",
+      "interests": ["mathematics", "planning", "teamwork", "construction", "leadership", "estimation", "project management"],
+      "skills": ["Civil engineering fundamentals", "Construction planning & estimation", "Scheduling & project controls", "Contracts & safety"],
+      "careers": ["Construction planning", "Estimation", "Site coordination", "Project controls", "Quantity surveying"],
+      "roadmapSteps": [
+        "Build civil-engineering fundamentals and communication skills.",
+        "Study construction planning, estimation, scheduling, contracts, safety and project controls as offered.",
+        "Use scheduling/estimation tools for a mock or supervised construction project.",
+        "Seek site-management, quantity surveying, planning or project-office exposure.",
+        "Explore planning engineer, project coordinator, estimator, site management or construction-management postgraduate study."
+      ]
+    },
+    {
+      "code": "BT-CSE",
+      "name": "B.Tech. Computer Science and Engineering (CSE)",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Mathematics, logical thinking, computers and problem solving.",
+      "bestSuitedFor": "Mathematics, logical thinking, computers and problem solving.",
+      "interests": ["mathematics", "logical thinking", "computers", "problem solving", "programming", "coding", "software"],
+      "skills": ["Programming & computational thinking", "Data structures & algorithms", "Databases, OS & networks", "Software engineering"],
+      "careers": ["Software developer", "QA/test engineer", "Systems support", "Web/mobile developer", "Further study"],
+      "roadmapSteps": [
+        "Learn one programming language, computational thinking and basic mathematics.",
+        "Study programming, data structures, algorithms, databases, operating systems, networks and software engineering as offered.",
+        "Build a useful application or website; use version control, testing and documentation.",
+        "Complete team projects, coding practice and a suitable internship.",
+        "Explore software development, QA/testing, systems, web/mobile development or postgraduate study."
+      ]
+    },
+    {
+      "code": "BT-CSE-AIML",
+      "name": "B.Tech. CSE with specialization in Artificial Intelligence and Machine Learning (AI & ML)",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Mathematics, coding, patterns, data and intelligent systems.",
+      "bestSuitedFor": "Mathematics, coding, patterns, data and intelligent systems.",
+      "interests": ["mathematics", "coding", "patterns", "data", "intelligent systems", "artificial intelligence", "machine learning", "ai", "ml"],
+      "skills": ["Programming, algebra & statistics", "Algorithms & data handling", "Machine learning & AI", "Model evaluation & explainability"],
+      "careers": ["AI/ML development support", "Data roles", "Automation", "Software engineering", "Postgraduate specialization"],
+      "roadmapSteps": [
+        "Build programming, algebra, probability and statistics foundations.",
+        "Study algorithms, data handling, machine learning and AI topics in the curriculum.",
+        "Create a small, responsibly evaluated model using an appropriate public dataset.",
+        "Practise model evaluation, explainability, privacy and deployment; seek an AI/data internship.",
+        "Explore junior AI/ML, data, software or automation roles; consider postgraduate specialization."
+      ]
+    },
+    {
+      "code": "BT-CSE-DS",
+      "name": "B.Tech. CSE with specialization in Data Science",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Mathematics, statistics, coding and finding patterns in data.",
+      "bestSuitedFor": "Mathematics, statistics, coding and finding patterns in data.",
+      "interests": ["mathematics", "statistics", "coding", "patterns in data", "data science", "analytics", "data"],
+      "skills": ["Programming & statistics", "Databases & data engineering", "Analytics & visualisation", "Machine learning"],
+      "careers": ["Data analyst", "BI analyst", "Junior data scientist", "Data engineering support"],
+      "roadmapSteps": [
+        "Learn programming, spreadsheets, algebra, probability and statistics.",
+        "Study databases, data engineering, analytics, visualisation and machine learning as offered.",
+        "Analyse a public dataset and present a clear dashboard/report with limitations.",
+        "Build a portfolio of reproducible projects and seek analytics/data internships.",
+        "Explore data analyst, BI, junior data science or data engineering pathways; postgraduate study."
+      ]
+    },
+    {
+      "code": "BT-CSE-ARVR",
+      "name": "B.Tech. CSE with specialization in AR & VR",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Computing, design, 3D worlds and interactive experiences.",
+      "bestSuitedFor": "Computing, design, 3D worlds and interactive experiences.",
+      "interests": ["computing", "design", "3d worlds", "interactive experiences", "ar", "vr", "games", "graphics"],
+      "skills": ["Programming & visual design", "Graphics & interaction design", "3D content & AR/VR tools", "Prototyping & user testing"],
+      "careers": ["AR/VR developer", "Immersive experience designer", "Simulation and interactive-media roles"],
+      "roadmapSteps": [
+        "Learn programming fundamentals and basic visual/spatial design.",
+        "Study graphics, interaction design, 3D content and AR/VR development tools used in the programme.",
+        "Build a small interactive prototype with accessibility and user testing.",
+        "Create a portfolio and seek experience in simulation, games, training or immersive-media projects.",
+        "Explore XR development, 3D interaction, simulation or further study in graphics/HCI."
+      ]
+    },
+    {
+      "code": "BT-CSE-CY",
+      "name": "B.Tech. CSE with specialization in Cyber Security",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Computers, logic, networks and digital safety.",
+      "bestSuitedFor": "Computers, logic, networks and digital safety.",
+      "interests": ["computers", "logic", "networks", "digital safety", "cyber security", "security", "ethical hacking"],
+      "skills": ["Programming, OS & networking", "Security principles & secure coding", "Cryptography & networks", "Defensive labs & incident response"],
+      "careers": ["Security operations", "Vulnerability management", "Secure development", "IT security"],
+      "roadmapSteps": [
+        "Learn programming, operating systems, networking and computer fundamentals.",
+        "Study security principles, secure coding, cryptography, networks and ethical testing in authorised environments.",
+        "Practise defensive labs and a legal security assessment in a controlled sandbox; document remediation.",
+        "Build a portfolio of secure coding, monitoring or incident-response exercises; seek security internship exposure.",
+        "Explore SOC/security analyst, secure software, IT security or postgraduate cybersecurity study."
+      ]
     },
     {
       "code": "BT-ECE",
-      "name": "B.Tech Electronics and Communication Engineering",
+      "name": "B.Tech. Electronics and Communication Engineering (ECE)",
       "level": "UG",
       "stream": "Engineering & Technology",
       "duration": "4 years",
-      "description": "Electronics, embedded systems, signal processing, communication systems and IoT hardware development.",
-      "interests": ["electronics", "circuits", "embedded systems", "iot", "hardware", "communication", "signals", "gadgets", "robotics", "drones", "physics", "technology"],
-      "skills": ["Circuit design", "Embedded programming", "Signal processing basics", "IoT prototyping", "PCB and hardware labs"],
-      "careers": ["Electronics Engineer", "Embedded Developer", "IoT Engineer", "Telecom roles", "Higher studies"]
+      "description": "Best suited to students interested in: Physics, Mathematics, electronics, communication and signals.",
+      "bestSuitedFor": "Physics, Mathematics, electronics, communication and signals.",
+      "interests": ["physics", "mathematics", "electronics", "communication", "signals", "circuits", "embedded systems"],
+      "skills": ["Maths, physics & circuits", "Digital electronics & signals", "Communication systems", "Embedded systems"],
+      "careers": ["Electronics", "Embedded systems", "Communication", "Testing", "Instrumentation"],
+      "roadmapSteps": [
+        "Strengthen mathematics, physics and circuit fundamentals.",
+        "Study circuits, digital electronics, signals, communication systems, embedded systems and related topics as offered.",
+        "Build a safe circuit, sensor or communication-system prototype and document measurements.",
+        "Seek electronics, telecom, embedded or testing internship experience.",
+        "Explore electronics design/test, embedded systems, telecom, instrumentation or postgraduate study."
+      ]
+    },
+    {
+      "code": "BT-ECE-AIML",
+      "name": "B.Tech. ECE with specialization in AI and ML",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Electronics, coding, mathematics, signals and intelligent systems.",
+      "bestSuitedFor": "Electronics, coding, mathematics, signals and intelligent systems.",
+      "interests": ["electronics", "coding", "mathematics", "signals", "intelligent systems", "ai", "ml", "embedded ai"],
+      "skills": ["Circuits, programming & linear algebra", "ECE fundamentals with AI/ML", "Sensor/signal-based ML", "Embedded AI projects"],
+      "careers": ["Embedded AI", "Signal/data analysis", "Electronics software", "Intelligent devices"],
+      "roadmapSteps": [
+        "Build circuit, programming, linear algebra and statistics foundations.",
+        "Study ECE fundamentals alongside AI/ML and relevant signal/data applications.",
+        "Create a sensor/signal-based ML prototype and test it responsibly.",
+        "Develop embedded AI or signal-processing projects and seek suitable internship exposure.",
+        "Explore embedded intelligence, signal analytics, electronics software or postgraduate study."
+      ]
+    },
+    {
+      "code": "BT-ECE-RA",
+      "name": "B.Tech. ECE with specialization in Robotics and Industrial Automation",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Electronics, Physics, coding, machines and control.",
+      "bestSuitedFor": "Electronics, Physics, coding, machines and control.",
+      "interests": ["electronics", "physics", "coding", "machines", "control", "robotics", "automation"],
+      "skills": ["Circuits, programming & mechanics", "Sensors, control & embedded systems", "Robotics & industrial automation", "Robot prototypes"],
+      "careers": ["Automation engineer support", "Robotics integration", "Controls", "Embedded systems"],
+      "roadmapSteps": [
+        "Learn circuit basics, programming, mechanics and mathematics.",
+        "Study sensors, control, embedded systems, robotics and industrial automation as offered.",
+        "Build a safe small robot or automation prototype; document sensors, control and testing.",
+        "Seek factory automation, robotics, instrumentation or embedded-system project exposure.",
+        "Explore automation, robotics integration, controls, testing or postgraduate study."
+      ]
     },
     {
       "code": "BT-EEE",
-      "name": "B.Tech Electrical and Electronics Engineering",
+      "name": "B.Tech. Electrical and Electronics Engineering (EEE)",
       "level": "UG",
       "stream": "Engineering & Technology",
       "duration": "4 years",
-      "description": "Electrical machines, power systems, power electronics and control systems with hands-on electrical labs.",
-      "interests": ["electricity", "electrical", "power", "machines", "circuits", "energy", "solar", "renewable energy", "physics", "engineering"],
-      "skills": ["Electrical machine labs", "Power system analysis", "Control systems", "Wiring and safety practice"],
-      "careers": ["Electrical Engineer", "Power sector roles", "Energy consultant paths", "Government engineering services (via exams)", "Higher studies"]
+      "description": "Best suited to students interested in: Mathematics, Physics, electricity, circuits and energy.",
+      "bestSuitedFor": "Mathematics, Physics, electricity, circuits and energy.",
+      "interests": ["mathematics", "physics", "electricity", "circuits", "energy", "electrical", "power"],
+      "skills": ["Maths, physics & electrical safety", "Circuits, machines & power systems", "Control & power electronics", "Electrical measurement projects"],
+      "careers": ["Electrical engineering support", "Power systems", "Maintenance", "Testing", "Electrical design"],
+      "roadmapSteps": [
+        "Strengthen mathematics, physics and electrical safety awareness.",
+        "Study circuits, electrical machines, power systems, control and power electronics as offered.",
+        "Complete a supervised electrical measurement, motor-control or energy-monitoring project.",
+        "Seek exposure to electrical maintenance, power, manufacturing or testing teams.",
+        "Explore electrical design/support, power systems, maintenance, testing or higher studies."
+      ]
     },
     {
-      "code": "BT-MECH",
-      "name": "B.Tech Mechanical Engineering",
+      "code": "BT-EEE-EV",
+      "name": "B.Tech. EEE with specialization in Electric Vehicles",
       "level": "UG",
       "stream": "Engineering & Technology",
       "duration": "4 years",
-      "description": "Design and manufacturing of machines: thermodynamics, mechanics of materials, CAD/CAM, robotics and manufacturing technology.",
-      "interests": ["machines", "cars", "automobiles", "mechanics", "designing machines", "manufacturing", "robots", "robotics", "3d printing", "thermal", "physics", "engineering", "drawing"],
-      "skills": ["CAD modelling", "Manufacturing processes", "Thermal & fluid sciences", "Machine design projects"],
-      "careers": ["Mechanical Engineer", "Design Engineer", "Manufacturing roles", "Automotive industry paths", "Higher studies"]
+      "description": "Best suited to students interested in: Physics, electricity, batteries, motors and sustainable transport.",
+      "bestSuitedFor": "Physics, electricity, batteries, motors and sustainable transport.",
+      "interests": ["physics", "electricity", "batteries", "motors", "sustainable transport", "electric vehicles", "ev", "automobiles"],
+      "skills": ["Electrical, circuit & maths foundations", "Motors & power electronics", "Battery systems & charging", "EV architecture"],
+      "careers": ["EV systems", "Motor drives", "Battery/charging support", "Automotive electronics"],
+      "roadmapSteps": [
+        "Build electrical, circuit and mathematics foundations.",
+        "Study motors, power electronics, battery systems, charging and EV architecture as included in the curriculum.",
+        "Develop a safe low-voltage EV subsystem or simulation project under supervision.",
+        "Seek exposure to EV, battery, charging, automotive electronics or testing projects.",
+        "Explore EV systems, battery/testing support, charging infrastructure or postgraduate study."
+      ]
     },
     {
-      "code": "BT-CIVIL",
-      "name": "B.Tech Civil Engineering",
+      "code": "BT-EEE-EN",
+      "name": "B.Tech. EEE with specialization in Energy Engineering",
       "level": "UG",
       "stream": "Engineering & Technology",
       "duration": "4 years",
-      "description": "Planning, design and construction of buildings, bridges, water supply and infrastructure with site-visit based learning.",
-      "interests": ["buildings", "construction", "bridges", "infrastructure", "structures", "surveying", "architecture", "environment", "maths", "physics", "engineering"],
-      "skills": ["Structural analysis basics", "Surveying practice", "Construction materials labs", "Site planning"],
-      "careers": ["Civil Engineer", "Site Engineer", "Structural design assistant", "Government works departments (via exams)", "Higher studies"]
+      "description": "Best suited to students interested in: Physics, electricity, energy efficiency and sustainability.",
+      "bestSuitedFor": "Physics, electricity, energy efficiency and sustainability.",
+      "interests": ["physics", "electricity", "energy efficiency", "sustainability", "energy", "power", "renewable energy"],
+      "skills": ["Electrical fundamentals & energy concepts", "Power systems & energy conversion", "Energy audits & modelling", "Renewable integration"],
+      "careers": ["Energy management", "Power systems", "Energy efficiency", "Renewable integration"],
+      "roadmapSteps": [
+        "Learn electrical fundamentals, mathematics and energy concepts.",
+        "Study power systems, energy conversion, efficiency and relevant renewable/energy topics.",
+        "Audit or model energy use for a building/device and recommend evidence-based improvements.",
+        "Seek experience with energy audits, utilities, renewables or industrial energy teams.",
+        "Explore energy management, power, efficiency, renewable integration or higher studies."
+      ]
     },
     {
-      "code": "BT-BIOTECH",
-      "name": "B.Tech Biotechnology",
+      "code": "BT-ME",
+      "name": "B.Tech. Mechanical Engineering",
       "level": "UG",
       "stream": "Engineering & Technology",
       "duration": "4 years",
-      "description": "Applies biology to technology: cell biology, genetics, bio-process engineering, medical and agricultural biotechnology labs.",
-      "interests": ["biology", "biotechnology", "genetics", "dna", "medical research", "medicine", "laboratory", "labs", "science experiments", "environment", "agriculture science", "chemistry", "research"],
-      "skills": ["Laboratory techniques", "Cell & molecular biology", "Bio-process fundamentals", "Scientific reporting"],
-      "careers": ["Biotech industry roles", "Lab analyst paths", "Research assistant", "Higher studies (M.Tech / M.Sc)"]
+      "description": "Best suited to students interested in: Mathematics, Physics, machines, design and manufacturing.",
+      "bestSuitedFor": "Mathematics, Physics, machines, design and manufacturing.",
+      "interests": ["mathematics", "physics", "machines", "design", "manufacturing", "mechanical", "cad", "automobiles"],
+      "skills": ["Maths, physics & technical drawing", "Mechanics & thermodynamics", "Manufacturing & machine design", "CAD tools"],
+      "careers": ["Mechanical design", "Production", "Maintenance", "Quality", "Manufacturing"],
+      "roadmapSteps": [
+        "Strengthen mathematics, physics, technical drawing and materials basics.",
+        "Study mechanics, thermodynamics, manufacturing, machine design, CAD and related topics as offered.",
+        "Design and test a small mechanical component or product using appropriate tools.",
+        "Seek manufacturing, maintenance, design or quality internship exposure.",
+        "Explore design, production, quality, maintenance, testing or postgraduate study."
+      ]
     },
     {
-      "code": "BT-AGRI",
-      "name": "B.Tech Agricultural Engineering",
+      "code": "BT-ME-RA",
+      "name": "B.Tech. Mechanical Engineering with specialization in Robotics and Industrial Automation",
       "level": "UG",
-      "stream": "Agricultural Engineering",
+      "stream": "Engineering & Technology",
       "duration": "4 years",
-      "description": "Farm machinery, soil and water conservation, irrigation, post-harvest technology and precision agriculture.",
-      "interests": ["agriculture", "farming", "farm machines", "soil", "irrigation", "environment", "nature", "food processing", "village development", "tractors", "biology"],
-      "skills": ["Farm machinery practice", "Soil & water engineering", "Irrigation design basics", "Field visits"],
-      "careers": ["Agricultural engineer roles", "Agri-equipment industry", "Water resource roles", "Agri-entrepreneurship", "Higher studies"]
+      "description": "Best suited to students interested in: Machines, coding, electronics, control and automation.",
+      "bestSuitedFor": "Machines, coding, electronics, control and automation.",
+      "interests": ["machines", "coding", "electronics", "control", "automation", "robotics", "mechatronics"],
+      "skills": ["Mechanical design & programming", "Mechatronics, robotics & sensors", "Control & automation", "Robot prototypes"],
+      "careers": ["Robotics/mechatronics support", "Automation", "Controls", "Integration"],
+      "roadmapSteps": [
+        "Build mechanical design, programming and basic electronics foundations.",
+        "Study mechatronics, robotics, sensors, control and automation topics in the curriculum.",
+        "Create a safe automated mechanism or robot prototype and test repeatability.",
+        "Seek exposure to robotics, manufacturing automation, controls or integration projects.",
+        "Explore automation, robotics integration, mechatronics, testing or postgraduate study."
+      ]
     },
     {
-      "code": "BARCH",
-      "name": "B.Arch (Bachelor of Architecture)",
+      "code": "BT-ME-EN",
+      "name": "B.Tech. Mechanical Engineering with specialization in Energy Engineering",
+      "level": "UG",
+      "stream": "Engineering & Technology",
+      "duration": "4 years",
+      "description": "Best suited to students interested in: Physics, thermodynamics, machines and energy systems.",
+      "bestSuitedFor": "Physics, thermodynamics, machines and energy systems.",
+      "interests": ["physics", "thermodynamics", "machines", "energy systems", "hvac", "thermal systems"],
+      "skills": ["Maths, physics & thermodynamics", "Heat transfer & thermal systems", "Energy conversion & efficiency", "Energy performance modelling"],
+      "careers": ["Thermal systems", "HVAC", "Energy efficiency", "Manufacturing and testing"],
+      "roadmapSteps": [
+        "Strengthen mathematics, physics and thermodynamics basics.",
+        "Study heat transfer, thermal systems, energy conversion and efficiency as offered.",
+        "Model or measure energy performance of a suitable system and explain assumptions.",
+        "Seek internship exposure in HVAC, thermal systems, energy, manufacturing or utilities.",
+        "Explore thermal engineering, energy efficiency, HVAC, testing or postgraduate study."
+      ]
+    },
+    {
+      "code": "AR-BARCH",
+      "name": "B.Arch. (Architecture)",
       "level": "UG",
       "stream": "Architecture & Planning",
       "duration": "5 years",
-      "description": "Architectural design studios, building construction, history of architecture, CAD and sustainable design; includes practical training.",
-      "interests": ["drawing", "sketching", "designing", "buildings", "architecture", "interior design", "art", "creativity", "creations", "models", "planning spaces", "painting", "design"],
-      "skills": ["Design studio practice", "Architectural drawing & CAD", "Model making", "Sustainable design thinking"],
-      "careers": ["Architect (after registration)", "Design studios", "Urban planning assistance", "Freelance design", "Higher studies"]
+      "description": "Best suited to students interested in: Drawing, Mathematics, design, buildings and spatial thinking.",
+      "bestSuitedFor": "Drawing, Mathematics, design, buildings and spatial thinking.",
+      "interests": ["drawing", "mathematics", "design", "buildings", "spatial thinking", "architecture"],
+      "skills": ["Drawing, observation & model-making", "Design studio & history", "Structures, materials & services", "Digital drafting & portfolio"],
+      "careers": ["Architectural design pathway", "BIM/design support", "Built environment", "Postgraduate study"],
+      "roadmapSteps": [
+        "Practise drawing, observation, model-making and visual communication; check current admission requirements and aptitude-test rules.",
+        "Study design studio, architectural history, structures, materials, building services and digital drafting as offered.",
+        "Develop studio projects and a portfolio; learn to explain design decisions and user needs.",
+        "Complete required practical training/internship according to programme and regulatory rules.",
+        "Explore architectural practice, design support, BIM, urban/design-related postgraduate study; confirm professional registration requirements."
+      ]
     },
     {
-      "code": "BCA",
+      "code": "UG-BCA",
       "name": "BCA (Bachelor of Computer Applications)",
       "level": "UG",
-      "stream": "Computer Applications",
+      "stream": "Computing Sciences & Applications",
       "duration": "3 years",
-      "description": "Application-oriented computing: programming, web technologies, databases and software tools for IT careers.",
-      "interests": ["computers", "programming", "coding", "software", "web development", "apps", "technology", "computer applications", "it jobs"],
-      "skills": ["Programming basics", "Web technologies", "Database handling", "Software tools practice"],
-      "careers": ["IT support & developer roles", "Web developer", "MCA / higher studies"]
+      "description": "Best suited to students interested in: Computer Science, ICT, logic and practical software.",
+      "bestSuitedFor": "Computer Science, ICT, logic and practical software.",
+      "interests": ["computer science", "ict", "logic", "practical software", "programming", "apps", "web development"],
+      "skills": ["Digital literacy & reasoning", "Programming & databases", "Web development & networks", "Practical app projects"],
+      "careers": ["Software/web development", "IT support", "Testing", "Further study such as MCA where eligible"],
+      "roadmapSteps": [
+        "Build digital literacy, logical reasoning and basic programming.",
+        "Study programming, databases, web development, networks and software concepts as offered.",
+        "Create a practical app or website and document its features and testing.",
+        "Complete team projects and seek software/IT internship exposure.",
+        "Explore junior software, web, IT support or further study such as MCA where eligible."
+      ]
     },
     {
-      "code": "BSC-PSY",
-      "name": "B.Sc Psychology",
+      "code": "UG-BSC-CS",
+      "name": "B.Sc. Computer Science",
       "level": "UG",
-      "stream": "Science & Humanities",
+      "stream": "Computing Sciences & Applications",
       "duration": "3 years",
-      "description": "Understanding human behaviour and mind: cognitive, social, developmental and organisational psychology with practical exposure.",
-      "interests": ["psychology", "human mind", "behaviour", "counselling", "helping people", "understanding people", "social work", "emotions", "mental health", "talking to people"],
-      "skills": ["Psychological testing basics", "Communication & empathy", "Research methods", "Case study analysis"],
-      "careers": ["Counselling pathways (with PG)", "HR assistant roles", "Community work", "Higher studies (M.Sc Psychology)"]
+      "description": "Best suited to students interested in: Computers, Mathematics, logic and coding.",
+      "bestSuitedFor": "Computers, Mathematics, logic and coding.",
+      "interests": ["computers", "mathematics", "logic", "coding", "programming", "software"],
+      "skills": ["Programming & mathematics", "Algorithms & data structures", "Databases & operating systems", "Application projects"],
+      "careers": ["Software", "QA/testing", "IT operations", "Postgraduate study"],
+      "roadmapSteps": [
+        "Learn programming and mathematics foundations.",
+        "Study algorithms, data structures, databases, operating systems and software concepts as offered.",
+        "Build a small application and a portfolio of coding exercises.",
+        "Seek internship/project experience and practise teamwork and documentation.",
+        "Explore software, testing, IT support or postgraduate computer-science study."
+      ]
     },
     {
-      "code": "BBA",
-      "name": "BBA (Bachelor of Business Administration)",
+      "code": "UG-BSC-CS-CY",
+      "name": "B.Sc. Computer Science with specialization in Cyber Security",
       "level": "UG",
-      "stream": "Management",
+      "stream": "Computing Sciences & Applications",
       "duration": "3 years",
-      "description": "Business fundamentals: management, marketing, finance, human resources and entrepreneurship with case-based learning.",
-      "interests": ["business", "management", "startups", "entrepreneurship", "marketing", "sales", "money", "finance", "leading teams", "leadership", "economy", "talking to people", "organising events"],
-      "skills": ["Management fundamentals", "Marketing & finance basics", "Communication", "Business plan building"],
-      "careers": ["Management trainee", "Marketing / HR assistant roles", "Family business support", "MBA path"]
+      "description": "Best suited to students interested in: Computers, networks, coding and digital safety.",
+      "bestSuitedFor": "Computers, networks, coding and digital safety.",
+      "interests": ["computers", "networks", "coding", "digital safety", "cyber security", "security"],
+      "skills": ["Programming, networking & OS", "Defensive security & secure coding", "Access control & cyber risk", "Security labs & reporting"],
+      "careers": ["Cybersecurity support", "SOC trainee", "Secure development support"],
+      "roadmapSteps": [
+        "Build programming, networking and operating-system fundamentals.",
+        "Study defensive security, secure coding, access control and cyber-risk concepts as offered.",
+        "Complete legal lab exercises and write a report on findings and fixes.",
+        "Develop a portfolio of defensive projects and seek entry-level IT/security exposure.",
+        "Explore IT security support, SOC trainee or further cybersecurity study."
+      ]
     },
     {
-      "code": "BCOM",
-      "name": "B.Com (Bachelor of Commerce)",
+      "code": "UG-BSC-AI",
+      "name": "B.Sc. Artificial Intelligence",
+      "level": "UG",
+      "stream": "Computing Sciences & Applications",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Mathematics, coding, data and intelligent systems.",
+      "bestSuitedFor": "Mathematics, coding, data and intelligent systems.",
+      "interests": ["mathematics", "coding", "data", "intelligent systems", "artificial intelligence", "ai", "machine learning"],
+      "skills": ["Programming, algebra & statistics", "AI concepts & data preparation", "Machine learning & evaluation", "AI projects & portfolio"],
+      "careers": ["AI project support", "Data analysis", "Software roles", "Postgraduate study"],
+      "roadmapSteps": [
+        "Build programming, algebra, probability and statistics foundations.",
+        "Study AI concepts, data preparation, machine learning and evaluation as offered.",
+        "Create a small AI project using an appropriate dataset; check bias and limitations.",
+        "Build a portfolio and seek data/AI project or internship experience.",
+        "Explore junior AI/data/software roles or postgraduate study."
+      ]
+    },
+    {
+      "code": "UG-BSC-DS",
+      "name": "B.Sc. Data Science",
+      "level": "UG",
+      "stream": "Computing Sciences & Applications",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Mathematics, statistics, coding and data storytelling.",
+      "bestSuitedFor": "Mathematics, statistics, coding and data storytelling.",
+      "interests": ["mathematics", "statistics", "coding", "data storytelling", "data science", "analytics", "data"],
+      "skills": ["Spreadsheets, programming & statistics", "Data cleaning & visualisation", "Databases & analytical methods", "Dashboards & reports"],
+      "careers": ["Data analyst", "Reporting/BI", "Analytics support"],
+      "roadmapSteps": [
+        "Learn spreadsheets, programming, probability and statistics.",
+        "Study data cleaning, visualisation, databases and analytical methods as offered.",
+        "Create a dashboard and report based on public data, noting limitations.",
+        "Complete projects and seek analytics internship exposure.",
+        "Explore data analyst, reporting/BI or further data-science study."
+      ]
+    },
+    {
+      "code": "UG-BSC-ARVR",
+      "name": "B.Sc. AR & VR",
+      "level": "UG",
+      "stream": "Computing Sciences & Applications",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Design, 3D content, technology and interactive media.",
+      "bestSuitedFor": "Design, 3D content, technology and interactive media.",
+      "interests": ["design", "3d content", "technology", "interactive media", "ar", "vr", "immersive media"],
+      "skills": ["Visual/spatial thinking & coding", "3D assets & interaction design", "AR/VR tools", "Immersive experience testing"],
+      "careers": ["XR content creator", "AR/VR development support", "Interactive media"],
+      "roadmapSteps": [
+        "Practise visual/spatial thinking and introductory coding.",
+        "Learn 3D assets, interaction design and AR/VR tools included in the curriculum.",
+        "Create and user-test a simple immersive experience.",
+        "Build a portfolio and seek experience in media, training, games or simulation.",
+        "Explore XR content/development roles or further study."
+      ]
+    },
+    {
+      "code": "UG-BSC-ANIM",
+      "name": "B.Sc. Animation and Multimedia",
+      "level": "UG",
+      "stream": "Computing Sciences & Applications",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Drawing, storytelling, design, video and digital art.",
+      "bestSuitedFor": "Drawing, storytelling, design, video and digital art.",
+      "interests": ["drawing", "storytelling", "design", "video", "digital art", "animation", "multimedia", "vfx"],
+      "skills": ["Observation, sketching & storytelling", "Design principles", "2D/3D animation & editing", "Showreel creation"],
+      "careers": ["Animation", "Motion graphics", "Multimedia", "Video/editing", "Creative production"],
+      "roadmapSteps": [
+        "Practise observation, sketching, storytelling and visual composition.",
+        "Learn design principles, 2D/3D animation, editing and multimedia tools as offered.",
+        "Create a short animation or multimedia piece and build a showreel.",
+        "Seek portfolio reviews, collaborative projects and relevant internship exposure.",
+        "Explore animation, video editing, motion graphics, multimedia or further creative study."
+      ]
+    },
+    {
+      "code": "UG-BSC-HA",
+      "name": "B.Sc. Healthcare Analytics",
+      "level": "UG",
+      "stream": "Computing Sciences & Applications",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Biology/health interest, Mathematics, statistics and data.",
+      "bestSuitedFor": "Biology/health interest, Mathematics, statistics and data.",
+      "interests": ["biology", "health", "mathematics", "statistics", "data", "healthcare", "medical field", "hospitals"],
+      "skills": ["Statistics & data handling", "Health data & analytics", "Databases & visualisation", "Privacy & confidentiality basics"],
+      "careers": ["Healthcare data/reporting analyst support", "Health informatics", "Research analytics"],
+      "roadmapSteps": [
+        "Build statistics, spreadsheets and data-handling skills; learn privacy and confidentiality basics.",
+        "Study health data, analytics, databases and visualisation as included in the curriculum.",
+        "Use a de-identified or public dataset for a carefully explained health-data project.",
+        "Seek supervised exposure in healthcare analytics, research or health information settings.",
+        "Explore healthcare reporting, analytics support or postgraduate study; clinical practice requires separate qualifications."
+      ]
+    },
+    {
+      "code": "UG-BSC-MDA",
+      "name": "B.Sc. Mathematics and Data Analytics",
+      "level": "UG",
+      "stream": "Computing Sciences & Applications",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Mathematics, statistics, patterns and computing.",
+      "bestSuitedFor": "Mathematics, statistics, patterns and computing.",
+      "interests": ["mathematics", "statistics", "patterns", "computing", "analytics", "data"],
+      "skills": ["Algebra, calculus & statistics", "Mathematical methods & programming", "Data handling & visualisation", "Dataset analysis & reporting"],
+      "careers": ["Data/quantitative analyst support", "Reporting", "Postgraduate mathematics/data study"],
+      "roadmapSteps": [
+        "Strengthen algebra, calculus, probability and statistics.",
+        "Study mathematical methods alongside programming, data handling and visualisation.",
+        "Analyse a dataset and communicate findings with clear charts and assumptions.",
+        "Build projects and seek analytics or research internship exposure.",
+        "Explore analytics, quantitative support, reporting or postgraduate study."
+      ]
+    },
+    {
+      "code": "UG-BSC-MATH",
+      "name": "B.Sc. Mathematics",
+      "level": "UG",
+      "stream": "Arts & Science",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Mathematics, logic, patterns and problem solving.",
+      "bestSuitedFor": "Mathematics, logic, patterns and problem solving.",
+      "interests": ["mathematics", "logic", "patterns", "problem solving", "maths", "teaching maths"],
+      "skills": ["Algebra, calculus & geometry", "Proof-based reasoning", "Modelling & statistics", "Computing skills"],
+      "careers": ["Teaching after required qualifications", "Analytics", "Quantitative roles", "Research/higher study"],
+      "roadmapSteps": [
+        "Strengthen algebra, calculus, geometry and proof-based reasoning.",
+        "Study core mathematics and applied/statistical topics offered in the programme.",
+        "Complete modelling, statistics or computational mathematics projects.",
+        "Build tutoring/research/project experience and relevant computing skills.",
+        "Explore teaching after required qualifications, analytics, banking/competitive exams or postgraduate study."
+      ]
+    },
+    {
+      "code": "UG-BSC-PHY",
+      "name": "B.Sc. Physics",
+      "level": "UG",
+      "stream": "Arts & Science",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Physics, Mathematics, experiments and how the world works.",
+      "bestSuitedFor": "Physics, Mathematics, experiments and how the world works.",
+      "interests": ["physics", "mathematics", "experiments", "how the world works", "science", "space", "research"],
+      "skills": ["Maths, mechanics & electricity", "Classical/modern physics & optics", "Laboratory methods", "Measurement & reporting"],
+      "careers": ["Laboratory/technical support", "Instrumentation", "Research after further study"],
+      "roadmapSteps": [
+        "Strengthen mathematics, mechanics, electricity and scientific reasoning.",
+        "Study classical/modern physics, electronics, optics and laboratory methods as offered.",
+        "Complete supervised experiments and a project with careful measurement and reporting.",
+        "Seek lab, instrumentation, research or technical internship exposure.",
+        "Explore lab/technical roles or postgraduate study; many specialist research/teaching roles require higher qualifications."
+      ]
+    },
+    {
+      "code": "UG-BSC-CHE",
+      "name": "B.Sc. Chemistry",
+      "level": "UG",
+      "stream": "Arts & Science",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Chemistry, experiments, materials and laboratory work.",
+      "bestSuitedFor": "Chemistry, experiments, materials and laboratory work.",
+      "interests": ["chemistry", "experiments", "materials", "laboratory work", "labs", "chemicals"],
+      "skills": ["Chemistry foundations & lab safety", "Organic/inorganic/physical/analytical chemistry", "Practical methods", "Accurate records & analysis"],
+      "careers": ["Laboratory analyst", "Quality control/testing", "Chemical industry support", "Higher study"],
+      "roadmapSteps": [
+        "Build chemistry foundations and laboratory safety.",
+        "Study organic, inorganic, physical and analytical chemistry and practical methods as offered.",
+        "Complete supervised lab work and a project with accurate records and analysis.",
+        "Seek quality-control, testing-lab, pharma, food or materials internship exposure.",
+        "Explore lab analyst, quality/testing support or postgraduate chemistry study."
+      ]
+    },
+    {
+      "code": "CO-BCOM",
+      "name": "B.Com.",
       "level": "UG",
       "stream": "Commerce",
       "duration": "3 years",
-      "description": "Accounting, taxation, banking, auditing and commercial law with professional-exam aligned foundations.",
-      "interests": ["accounts", "accounting", "commerce", "taxation", "banking", "business", "finance", "numbers", "maths", "economy", "audit"],
-      "skills": ["Financial accounting", "Taxation basics", "Business law awareness", "Spreadsheet practice"],
-      "careers": ["Accountant paths", "Banking sector exams", "CA / CMA preparation", "M.Com / MBA"]
+      "description": "Best suited to students interested in: Commerce, Accountancy, Economics and business.",
+      "bestSuitedFor": "Commerce, Accountancy, Economics and business.",
+      "interests": ["commerce", "accountancy", "economics", "business", "accounts", "finance"],
+      "skills": ["Accounting & business maths", "Taxation, business law & finance", "Bookkeeping & statements", "Spreadsheet analysis"],
+      "careers": ["Accounts", "Finance operations", "Taxation support", "Banking pathways", "Higher/professional study"],
+      "roadmapSteps": [
+        "Build accounting, business mathematics, economics and spreadsheet skills.",
+        "Study accounting, taxation, business law, finance and management subjects as offered.",
+        "Practise bookkeeping, financial statements and spreadsheet analysis using sample data.",
+        "Seek accounting, finance, audit or operations internship exposure.",
+        "Explore accounts assistant, finance operations, banking/competitive exams or professional/higher qualifications."
+      ]
     },
     {
-      "code": "MT-CSE",
-      "name": "M.Tech Computer Science and Engineering",
-      "level": "PG",
-      "stream": "Engineering & Technology",
-      "duration": "2 years",
-      "description": "Advanced computing: advanced algorithms, research methodology and specialisation electives with thesis work.",
-      "interests": ["computer science", "research", "advanced programming", "artificial intelligence", "teaching", "higher studies", "mtech"],
-      "skills": ["Advanced algorithms", "Research methodology", "Specialised electives", "Thesis writing"],
-      "careers": ["Advanced engineering roles", "Teaching paths", "Research careers", "Doctoral studies"]
+      "code": "CO-BCOM-HON",
+      "name": "B.Com. Honours",
+      "level": "UG",
+      "stream": "Commerce",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Accountancy, Economics, finance and deeper business study.",
+      "bestSuitedFor": "Accountancy, Economics, finance and deeper business study.",
+      "interests": ["accountancy", "economics", "finance", "deeper business study", "commerce"],
+      "skills": ["Accounting, economics & quantitative skills", "Advanced commerce/finance topics", "Financial analysis projects", "Audit/finance exposure"],
+      "careers": ["Accounting/finance analysis", "Audit/tax support", "Postgraduate/professional study"],
+      "roadmapSteps": [
+        "Strengthen accounting, economics, quantitative and analytical skills.",
+        "Study advanced commerce/finance topics and electives available in the programme.",
+        "Complete a financial analysis or research project using credible data.",
+        "Seek audit, finance, tax or corporate internship experience.",
+        "Explore accounting/finance analyst pathways or relevant professional/postgraduate qualifications."
+      ]
     },
     {
-      "code": "MBA",
-      "name": "MBA (Master of Business Administration)",
-      "level": "PG",
-      "stream": "Management",
-      "duration": "2 years",
-      "description": "Postgraduate management education across marketing, finance, HR and operations with industry projects.",
-      "interests": ["business", "management", "leadership", "marketing", "finance", "startups", "career growth", "mba"],
-      "skills": ["Strategic thinking", "Business analytics basics", "Leadership & communication", "Industry projects"],
-      "careers": ["Managerial roles", "Business analysis", "Entrepreneurship", "Corporate careers"]
+      "code": "CO-BCOM-CS",
+      "name": "B.Com. Corporate Secretaryship",
+      "level": "UG",
+      "stream": "Commerce",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Commerce, business law, governance and communication.",
+      "bestSuitedFor": "Commerce, business law, governance and communication.",
+      "interests": ["commerce", "business law", "governance", "communication", "company secretary", "compliance"],
+      "skills": ["Accounting & business communication", "Company law & governance", "Compliance & secretarial practice", "Governance documents"],
+      "careers": ["Corporate governance/compliance support", "Company secretarial assistance"],
+      "roadmapSteps": [
+        "Build accounting, business communication and legal-reading basics.",
+        "Study company law, corporate governance, compliance and secretarial practice as offered.",
+        "Practise preparing mock meeting minutes, compliance calendars and governance documents.",
+        "Seek supervised exposure in company secretarial, legal/compliance or corporate administration teams.",
+        "Explore compliance/secretarial support; professional company-secretary qualification and membership requirements are separate."
+      ]
     },
     {
-      "code": "MCA",
-      "name": "MCA (Master of Computer Applications)",
-      "level": "PG",
-      "stream": "Computer Applications",
+      "code": "CO-BCOM-CA",
+      "name": "B.Com. Computer Applications",
+      "level": "UG",
+      "stream": "Commerce",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Commerce, accounting, computers and business systems.",
+      "bestSuitedFor": "Commerce, accounting, computers and business systems.",
+      "interests": ["commerce", "accounting", "computers", "business systems", "business software", "mis"],
+      "skills": ["Accounting, spreadsheets & computers", "Business software & databases", "Business reporting projects", "Finance operations exposure"],
+      "careers": ["Accounts and business operations", "MIS/reporting", "Application support"],
+      "roadmapSteps": [
+        "Build accounting, spreadsheet and computer fundamentals.",
+        "Study commerce alongside business software, databases and applications included in the curriculum.",
+        "Create a simple business reporting or inventory/accounting workflow project.",
+        "Seek finance operations, business systems or IT-enabled services internship exposure.",
+        "Explore accounts/business operations, application support or further commerce/IT study."
+      ]
+    },
+    {
+      "code": "CO-BCOM-PA",
+      "name": "B.Com. Professional Accounting",
+      "level": "UG",
+      "stream": "Commerce",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Accountancy, taxation, auditing and financial analysis.",
+      "bestSuitedFor": "Accountancy, taxation, auditing and financial analysis.",
+      "interests": ["accountancy", "taxation", "auditing", "financial analysis", "accounting", "audit", "ca"],
+      "skills": ["Accounting, maths & spreadsheets", "Financial/cost/management accounting", "Tax & audit", "Accounts preparation & interpretation"],
+      "careers": ["Accounting", "Audit/tax support", "Cost/management accounting", "Professional study"],
+      "roadmapSteps": [
+        "Strengthen accounting, mathematics and spreadsheet skills.",
+        "Study financial accounting, cost/management accounting, tax, audit and related subjects as offered.",
+        "Practise preparing and interpreting sample accounts, budgets and tax calculations.",
+        "Seek supervised experience in accounting firms, finance departments or audit support.",
+        "Explore accounting/audit/tax support and consider relevant professional qualifications; verify exemptions and eligibility with the professional body."
+      ]
+    },
+    {
+      "code": "CO-BCOM-FAI",
+      "name": "B.Com. Fintech and AI",
+      "level": "UG",
+      "stream": "Commerce",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Commerce, finance, technology, data and digital services.",
+      "bestSuitedFor": "Commerce, finance, technology, data and digital services.",
+      "interests": ["commerce", "finance", "technology", "data", "digital services", "fintech", "ai"],
+      "skills": ["Accounting, statistics & digital literacy", "Finance + technology/analytics/AI topics", "Financial-data dashboard projects", "Responsible data use & fraud awareness"],
+      "careers": ["Fintech operations", "Finance analytics/reporting support", "Digital financial services"],
+      "isNew2026": true,
+      "association": "TATTI",
+      "roadmapSteps": [
+        "Build accounting, statistics, spreadsheets and digital-literacy foundations.",
+        "Study finance/business concepts alongside relevant technology, analytics and AI topics in the curriculum.",
+        "Create a simulated budgeting, payments or financial-data dashboard project using non-sensitive data.",
+        "Learn responsible data use, fraud awareness and privacy; seek fintech/finance analytics exposure.",
+        "Explore fintech operations, financial-data/reporting support or further finance/technology study."
+      ]
+    },
+    {
+      "code": "MG-BBA",
+      "name": "BBA",
+      "level": "UG",
+      "stream": "Management Studies",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Business, leadership, Economics, communication and entrepreneurship.",
+      "bestSuitedFor": "Business, leadership, Economics, communication and entrepreneurship.",
+      "interests": ["business", "leadership", "economics", "communication", "entrepreneurship", "management", "startups"],
+      "skills": ["Communication, teamwork & accounting", "Management, marketing, finance & HR", "Market-research projects", "Internship exposure"],
+      "careers": ["Business operations", "Sales/marketing", "HR support", "Entrepreneurship", "MBA or related study"],
+      "roadmapSteps": [
+        "Build communication, teamwork, basic accounting and quantitative skills.",
+        "Study management, marketing, finance, HR, operations and business strategy as offered.",
+        "Run a small market-research or business-plan project and present results.",
+        "Seek internships in business operations, sales, marketing, HR or startups.",
+        "Explore management trainee, operations, sales, marketing or postgraduate management study."
+      ]
+    },
+    {
+      "code": "MG-BBA-DM",
+      "name": "BBA Digital Marketing",
+      "level": "UG",
+      "stream": "Management Studies",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Business, social media, writing, creativity and analytics.",
+      "bestSuitedFor": "Business, social media, writing, creativity and analytics.",
+      "interests": ["business", "social media", "writing", "creativity", "analytics", "digital marketing", "marketing"],
+      "skills": ["Communication & content writing", "Digital marketing & consumer behaviour", "Campaign planning & analytics", "Content/campaign portfolio"],
+      "careers": ["Digital marketing", "Social media/content", "Campaign and analytics support"],
+      "roadmapSteps": [
+        "Build communication, content-writing and basic business skills.",
+        "Study digital marketing, consumer behaviour, content, search/social channels and analytics as offered.",
+        "Plan a sample campaign; set measurable goals and evaluate mock/public metrics ethically.",
+        "Build a portfolio of content/campaign work and seek marketing internship exposure.",
+        "Explore digital marketing, content, social media, SEO/advertising support or further study."
+      ]
+    },
+    {
+      "code": "MG-BBA-HM",
+      "name": "BBA Hospitality Management",
+      "level": "UG",
+      "stream": "Management Studies",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Communication, service, tourism, events and business.",
+      "bestSuitedFor": "Communication, service, tourism, events and business.",
+      "interests": ["communication", "service", "tourism", "events", "business", "hotels", "hospitality"],
+      "skills": ["Communication, teamwork & customer service", "Hospitality operations & events", "Service-improvement projects", "Practical training"],
+      "careers": ["Hospitality operations", "Guest relations", "Events", "Service management"],
+      "roadmapSteps": [
+        "Build communication, teamwork, customer-service and numeracy skills.",
+        "Study hospitality operations, service management, events, food/beverage or tourism topics as offered.",
+        "Plan a mock event or service-improvement project with budget and feedback measures.",
+        "Seek practical training/internship in hospitality or events where available.",
+        "Explore hotel/event operations, guest relations, service coordination or postgraduate study."
+      ]
+    },
+    {
+      "code": "MG-BBA-SCM",
+      "name": "BBA Logistics and Supply Chain Management",
+      "level": "UG",
+      "stream": "Management Studies",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Business, Mathematics, planning, transport and operations.",
+      "bestSuitedFor": "Business, Mathematics, planning, transport and operations.",
+      "interests": ["business", "mathematics", "planning", "transport", "operations", "logistics", "supply chain"],
+      "skills": ["Spreadsheets, quantitative & communication", "Procurement, inventory & logistics", "Supply-chain mapping & data analysis", "Operations exposure"],
+      "careers": ["Logistics", "Inventory", "Procurement", "Supply-chain and operations support"],
+      "roadmapSteps": [
+        "Build spreadsheet, quantitative and communication skills.",
+        "Study procurement, inventory, logistics, transport, operations and supply-chain concepts as offered.",
+        "Map a sample supply chain and analyse inventory or delivery data.",
+        "Seek internship exposure in logistics, warehousing, procurement or operations.",
+        "Explore logistics coordinator, inventory/procurement support, operations or further study."
+      ]
+    },
+    {
+      "code": "HU-BA-ENG",
+      "name": "B.A. English",
+      "level": "UG",
+      "stream": "Humanities, Languages & Media",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: English, reading, writing, literature and communication.",
+      "bestSuitedFor": "English, reading, writing, literature and communication.",
+      "interests": ["english", "reading", "writing", "literature", "communication"],
+      "skills": ["Grammar, writing & critical reading", "Literature, language & criticism", "Essays, reviews & writing portfolio", "Editing & communications exposure"],
+      "careers": ["Writing/editing/content", "Communications", "Publishing", "Teaching after required qualifications"],
+      "roadmapSteps": [
+        "Read widely and practise grammar, writing, speaking and critical reading.",
+        "Study literature, language, criticism and communication topics offered in the programme.",
+        "Create essays, reviews, presentations or a writing portfolio.",
+        "Seek experience in editing, content, education support or communications.",
+        "Explore content/editorial, communication, publishing or teaching after required qualifications; consider postgraduate study."
+      ]
+    },
+    {
+      "code": "HU-BA-TAM",
+      "name": "B.A. Tamil",
+      "level": "UG",
+      "stream": "Humanities, Languages & Media",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Tamil language, literature, writing, culture and communication.",
+      "bestSuitedFor": "Tamil language, literature, writing, culture and communication.",
+      "interests": ["tamil", "tamil language", "literature", "writing", "culture", "communication"],
+      "skills": ["Tamil reading, writing & grammar", "Tamil literature & cultural texts", "Translation & literary analysis", "Publishing/media exposure"],
+      "careers": ["Tamil content", "Translation", "Publishing/media", "Teaching after required qualifications"],
+      "roadmapSteps": [
+        "Strengthen Tamil reading, writing, grammar and speaking.",
+        "Study Tamil literature, language, criticism and cultural texts offered in the programme.",
+        "Create a portfolio of writing, translation, literary analysis or cultural documentation.",
+        "Seek experience in publishing, media, language projects or education support.",
+        "Explore content, translation, publishing, media or teaching after required qualifications; consider postgraduate study."
+      ]
+    },
+    {
+      "code": "HU-BA-JMC",
+      "name": "B.A. Journalism and Mass Communication",
+      "level": "UG",
+      "stream": "Humanities, Languages & Media",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Writing, speaking, current affairs, photography and media.",
+      "bestSuitedFor": "Writing, speaking, current affairs, photography and media.",
+      "interests": ["writing", "speaking", "current affairs", "photography", "media", "journalism", "news"],
+      "skills": ["Writing, research & media literacy", "Reporting, media law/ethics & production", "Fact-checked stories & multimedia", "Newsroom/PR portfolio"],
+      "careers": ["Journalism", "Digital content", "Production", "Editing", "Public relations"],
+      "roadmapSteps": [
+        "Build writing, research, speaking and media-literacy skills.",
+        "Study reporting, media law/ethics, production, communication and digital media as offered.",
+        "Produce a fact-checked article, audio/video story or multimedia package.",
+        "Build a portfolio and seek newsroom, production, PR or digital-media internship exposure.",
+        "Explore reporting, content production, editing, public relations or further media study."
+      ]
+    },
+    {
+      "code": "ED-BSC-BED",
+      "name": "B.Sc. B.Ed. (integrated programme)",
+      "level": "UG",
+      "stream": "Education",
+      "duration": "4 years (integrated)",
+      "description": "Best suited to students interested in: Science subject interest, teaching, communication and helping others.",
+      "bestSuitedFor": "Science subject interest, teaching, communication and helping others.",
+      "interests": ["science", "teaching", "communication", "helping others", "education", "mentoring"],
+      "skills": ["Science discipline + educational foundations", "Pedagogy & lesson planning", "Learning materials creation", "School teaching practice"],
+      "careers": ["Teaching pathway subject to current regulations", "Teacher eligibility & recruitment requirements"],
+      "roadmapSteps": [
+        "Confirm the current integrated programme structure, subject combinations and eligibility.",
+        "Study the relevant science discipline alongside educational foundations and pedagogy.",
+        "Practise lesson planning, explaining concepts and creating learning materials.",
+        "Complete required school observation, teaching practice and assessments under programme rules.",
+        "Explore school teaching after satisfying applicable qualification, teacher-eligibility and recruitment rules; consider further education study."
+      ]
+    },
+    {
+      "code": "ED-BED",
+      "name": "B.Ed.",
+      "level": "UG",
+      "stream": "Education",
       "duration": "2 years",
-      "description": "Advanced application development: software engineering, cloud and modern frameworks for IT careers.",
-      "interests": ["computers", "programming", "software", "apps", "web development", "it career", "mca", "higher studies"],
-      "skills": ["Advanced programming", "Full-stack basics", "Cloud fundamentals", "Project development"],
-      "careers": ["Software developer", "IT consultant paths", "System roles"]
+      "description": "Best suited to students interested in: Teaching, mentoring, communication and learning design.",
+      "bestSuitedFor": "Teaching, mentoring, communication and learning design.",
+      "interests": ["teaching", "mentoring", "communication", "learning design", "education"],
+      "skills": ["Pedagogy, learner development & assessment", "Inclusion & subject-teaching methods", "Lesson plans & teaching aids", "Supervised school practice"],
+      "careers": ["School teaching pathway subject to eligibility tests", "Qualification & recruitment requirements"],
+      "roadmapSteps": [
+        "Confirm entry eligibility and recognised programme requirements.",
+        "Study pedagogy, learner development, assessment, inclusion and subject-teaching methods as offered.",
+        "Prepare lesson plans, teaching aids and assessment activities.",
+        "Complete required school-based practice and supervised teaching.",
+        "Apply for teaching roles only after meeting applicable teacher-eligibility tests, subject requirements and recruitment rules."
+      ]
+    },
+    {
+      "code": "HU-BSC-FTVP",
+      "name": "B.Sc. Film & TV Production",
+      "level": "UG",
+      "stream": "Humanities, Languages & Media",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Video, storytelling, media, sound, editing and production.",
+      "bestSuitedFor": "Video, storytelling, media, sound, editing and production.",
+      "interests": ["video", "storytelling", "media", "sound", "editing", "production", "film", "movies", "camera"],
+      "skills": ["Storytelling, framing & photography", "Production planning, camera & sound", "Short film projects", "Showreel building"],
+      "careers": ["Film/video production", "Editing", "Camera/sound support", "Digital content"],
+      "isNew2026": true,
+      "association": "TATTI",
+      "roadmapSteps": [
+        "Practise storytelling, framing, basic photography and responsible media use.",
+        "Study production planning, camera, sound, editing and related subjects as offered.",
+        "Create a short film/video with a script, shot plan, sound and edit.",
+        "Build a showreel and seek supervised production, studio or media internship exposure.",
+        "Explore production assistant, editing, camera, sound or content roles; growth depends on portfolio and experience."
+      ]
+    },
+    {
+      "code": "UG-BSC-RE",
+      "name": "B.Sc. Renewable Energy",
+      "level": "UG",
+      "stream": "Arts & Science",
+      "duration": "3 years",
+      "description": "Best suited to students interested in: Physics, environment, electricity and sustainability.",
+      "bestSuitedFor": "Physics, environment, electricity and sustainability.",
+      "interests": ["physics", "environment", "electricity", "sustainability", "renewable energy", "solar", "energy"],
+      "skills": ["Maths, physics & energy fundamentals", "Renewable-energy systems", "Solar/energy-efficiency projects", "Energy auditing exposure"],
+      "careers": ["Renewable energy project support", "Solar/energy efficiency", "Testing", "Further study"],
+      "isNew2026": true,
+      "association": "TATTI",
+      "roadmapSteps": [
+        "Strengthen mathematics, physics and energy fundamentals.",
+        "Study renewable-energy systems and related electrical/mechanical/environmental concepts as offered.",
+        "Model or demonstrate a small safe solar/energy-efficiency project under supervision.",
+        "Seek exposure to solar, energy auditing, utilities or sustainability projects.",
+        "Explore renewable project support, energy-efficiency, testing or further energy study."
+      ]
     }
   ]
 }

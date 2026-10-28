@@ -13,6 +13,9 @@ export interface CourseSummary {
   skills: string[];
   careers: string[];
   isPlaceholder: boolean;
+  bestSuitedFor?: string;
+  isNew2026?: boolean;
+  association?: string | null;
 }
 
 export interface Recommendation extends CourseSummary {
@@ -76,6 +79,11 @@ export interface TtsResponse {
 export interface CoursesResponse {
   courses: CourseSummary[];
   verified: boolean;
+  meta?: {
+    source: string;
+    academicYear: string;
+    note: string;
+  };
 }
 
 export const LANGUAGE_LABEL: Record<Language, string> = {

@@ -39,6 +39,11 @@ export function CourseCard({ course, onSelect }: CourseCardProps) {
           <Badge variant="outline" className="text-xs font-normal">
             {course.duration}
           </Badge>
+          {course.isNew2026 && (
+            <Badge className="bg-emerald-600 text-white hover:bg-emerald-600">
+              New {course.association ? `2026-27 · with ${course.association}` : "2026-27"}
+            </Badge>
+          )}
           {course.isTop && (
             <Badge className="bg-amber-400 text-amber-950 hover:bg-amber-400">
               Best match

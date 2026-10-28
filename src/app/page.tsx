@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 import { ChatWindow } from "@/components/pmist/ChatWindow";
 import { Header } from "@/components/pmist/Header";
-import { PlaceholderBanner } from "@/components/pmist/PlaceholderBanner";
+import { PlaceholderBanner, VerifiedBanner } from "@/components/pmist/PlaceholderBanner";
 import { RecommendationPanel } from "@/components/pmist/RecommendationPanel";
 import type { ChatMessage } from "@/components/pmist/MessageBubble";
 import type { ChatStatus } from "@/components/pmist/StatusPill";
@@ -67,6 +67,9 @@ export default function Page() {
     language: "en",
   });
   const [verified, setVerified] = useState<boolean | null>(null);
+  const [catalogueMeta, setCatalogueMeta] = useState<
+    { count?: number; academicYear?: string; note?: string } | null
+  >(null);
   const [input, setInput] = useState("");
 
   const recorderRef = useRef<WavRecorder | null>(null);
@@ -79,7 +82,15 @@ export default function Page() {
     let cancelled = false;
     fetchCourses()
       .then((res) => {
-        if (!cancelled) setVerified(res.verified);
+        if (cancelled) return;
+        setVerified(res.verified);
+        if (res.meta || Array.isArray(res.courses)) {
+          setCatalogueMeta({
+            count: Array.isArray(res.courses) ? res.courses.length : undefined,
+            academicYear: res.meta?.academicYear,
+            note: res.meta?.note,
+          });
+        }
       })
       .catch(() => {
         // Backend may not be reachable yet — banner stays hidden.
@@ -252,6 +263,16 @@ export default function Page() {
       {verified === false && (
         <div className="mx-auto w-full max-w-6xl px-3 pt-4 sm:px-6">
           <PlaceholderBanner />
+        </div>
+      )}
+
+      {verified === true && (
+        <div className="mx-auto w-full max-w-6xl px-3 pt-4 sm:px-6">
+          <VerifiedBanner
+            count={catalogueMeta?.count}
+            academicYear={catalogueMeta?.academicYear}
+            note={catalogueMeta?.note}
+          />
         </div>
       )}
 

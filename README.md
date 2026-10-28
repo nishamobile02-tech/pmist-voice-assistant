@@ -2,7 +2,7 @@
 
 A friendly, multilingual **AI voice assistant for the admission department of Periyar Maniammai Institute of Science and Technology (PMIST)**, Thanjavur. It chats naturally with prospective students (English / Tamil / Tanglish), understands their interests, recommends **only verified PMIST courses**, and generates personalised educational & career roadmaps — with full voice input and voice output.
 
-> ⚠️ **Course data status:** the bundled catalogue (`src/lib/pmist/data/courses.json`) is **development placeholder data** based on publicly known PMIST programmes. It is clearly flagged in the UI and in the database (`isPlaceholder = true`). Replace it with the **official PMIST course list** before any real use (see *Replacing the course list*).
+> ✅ **Course data status: VERIFIED.** The bundled catalogue (`src/lib/pmist/data/courses.json`) now contains the **official PMIST course-career inventory — 52 programmes for 2026-27** (including the 3 new TATTI-associated courses), each with its official "best suited for" profile, roadmap steps and career directions. The UI shows a green verification banner; `isPlaceholder = false`. Per the source document's own caution, availability/eligibility/duration can change — confirm every course against the current 2026-27 official brochure before final publication (see *Updating the course list*).
 
 ---
 
@@ -176,9 +176,11 @@ Disconnect the internet — the full voice loop (mic → local ASR → local LLM
 
 ---
 
-## 5. Replacing the course list (IMPORTANT before real use)
+## 5. Updating the course list
 
-1. Get the official PMIST course list from the admission department.
+The catalogue is already the **official PMIST working inventory (52 courses, 2026-27)** sourced from `PMIST_Open_House_Course_Career_Chatbot.docx`. When PMIST publishes a newer brochure:
+
+1. Get the updated official PMIST course list from the admission department.
 2. Edit `src/lib/pmist/data/courses.json` — each entry:
 
 ```json
@@ -189,20 +191,22 @@ Disconnect the internet — the full voice loop (mic → local ASR → local LLM
   "stream": "Engineering & Technology",
   "duration": "4 years",
   "description": "one or two factual sentences",
+  "bestSuitedFor": "official 'best suited to students interested in' line",
   "interests": ["programming", "ai", "games"],  // matching tags (English words work best)
   "skills": ["Programming (C, Java, Python)", "..."],
-  "careers": ["Software Engineer", "..."]
+  "careers": ["Software Engineer", "..."],
+  "roadmapSteps": ["official step 1", "... 5 steps from the PMIST document"],
+  "isNew2026": false,                      // true for new 2026-27 courses
+  "association": "TATTI"                    // optional partner institute
 }
 ```
 
-3. Clear the DB table and re-seed:
+3. Re-sync (idempotent — upserts every entry, removes stale rows):
 ```bash
-npx prisma db push --accept-data-loss   # or delete rows manually
 bun scripts/seed-courses.ts
 ```
-4. Set `"verified": true` in the JSON meta **only after the list is confirmed**, and re-seed — the amber "placeholder" banner disappears and `isPlaceholder` becomes `false`.
 
-The matcher is deterministic — keep `interests` tags as simple English words/phrases.
+The roadmap engine maps the 5 official `roadmapSteps` positionally to the roadmap sections (foundations → skills → projects → internships → next steps), so displayed guidance is always grounded in the supplied PMIST document — never invented by the LLM. The matcher is deterministic — keep `interests` tags as simple English words/phrases.
 
 ---
 
@@ -214,7 +218,7 @@ The matcher is deterministic — keep `interests` tags as simple English words/p
 | `/api/roadmap` | POST | `{sessionId, courseCode}` | `{roadmap, speechText}` |
 | `/api/asr` | POST | `{audioBase64}` (16kHz WAV) | `{text}` |
 | `/api/tts` | POST | `{text, language}` | `{audioBase64, mime, fallback}` — `fallback:"browser"` → client speaks via OS voice |
-| `/api/courses` | GET | — | `{courses[], verified}` |
+| `/api/courses` | GET | — | `{courses[], verified, meta}` |
 | `/api/session/reset` | POST | `{sessionId}` | `{ok}` — clears that conversation (privacy) |
 
 Sessions are keyed by a browser-generated `sessionId`. Chat messages/profiles older than 24h are purged automatically on any reset; audio is never persisted.
@@ -257,7 +261,7 @@ Service creation via API returned `402 Payment Required` (Render now requires a 
 
 ## 10. Known limitations (honest notes)
 
-- **Course data is placeholder** until the official PMIST list is supplied and verified.
+- **Course data** is the official PMIST working inventory (52 programmes, 2026-27) — per the source document, confirm against the current official brochure before final publication. Tamil TTS via browser OS voice in demo mode.
 - **Tamil TTS**: the managed demo engine has no Tamil voice — Tamil replies use the browser's `ta-IN` OS voice (quality depends on the OS). For best offline Tamil speech, install a Piper Tamil voice.
 - **Tanglish ASR accuracy** varies (code-mixed speech); recognition accuracy should be tested per machine. Text fallback always available.
 - The managed LLM occasionally needs the backend's corrective pass to obey the course list — validation is enforced in code regardless.
