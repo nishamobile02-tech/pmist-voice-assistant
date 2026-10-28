@@ -86,3 +86,21 @@ Work Log:
 
 Stage Summary:
 - App fully working in browser: chat, recommendations, roadmap, TTS playback, restart, responsive.
+
+---
+Task ID: 8, 9, 10, 11
+Agent: main (Z.ai Code)
+Task: GitHub push, deployments, README, final verification
+
+Work Log:
+- GitHub: repo nishamobile02-tech/pmist-voice-assistant created and pushed (public for college submission). Verified no secrets tracked (.env untracked, git grep clean for all 4 tokens).
+- Added offline-safe rule-based fallback engine (src/lib/pmist/rule-based.ts) wired into orchestrator catch-path: when the LLM is unreachable, conversation continues locally with stage machine + validated matcher recommendations (no cloud fallback, spec-compliant). Unit-tested in en/tanglish/ta.
+- Added ZAI_CONFIG_JSON portable config hook (zai-config.ts) for external hosts.
+- Vercel: deployed https://pmist-voice-assistant.vercel.app (DATABASE_URL + AI_PROVIDER=zai). Smoke-tested live: root 200, /api/courses works via Neon, chat works via rule-based engine with validated course codes.
+- Render: service creation via API returns 402 Payment Required (Render requires payment method on file even for free tier). Documented manual steps in README.
+- README.md: full deliverable docs (architecture mapping, offline Ollama/whisper.cpp/Piper runbook, course DB format, API reference, deployment, privacy, troubleshooting, honest limitations).
+- Final browser re-verification after changes: Tanglish business/accounts flow -> B.Com + BBA validated cards, TTS speaking, clean console.
+
+Stage Summary:
+- Delivered: working app (local + Vercel), GitHub repo, README runbook, offline provider switches, rule-based degraded mode.
+- Honest gaps: Render deploy needs user's payment setup; course data still placeholder pending official PMIST list; Tamil TTS via browser OS voice in demo mode.
